@@ -5,6 +5,7 @@ import NavigationTemplate from "templates/NavigationTemplate";
 const PageWrapper = styled.div`
   margin-top: 100px;
   width: 100%;
+  height: 120vh;
   background: var(--clr-trinary);
   display: flex;
   flex-direction: column;

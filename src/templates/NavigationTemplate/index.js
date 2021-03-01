@@ -1,10 +1,10 @@
 import React from "react";
 import PropTypes from "prop-types";
-// import Header from 'components/organisms/Header';
+import Header from "components/Header";
 
 const NavigationTemplate = ({ children }) => (
   <>
-    {/* <Header /> */}
+    <Header />
     {children}
     {/* <Footer /> */}
   </>
