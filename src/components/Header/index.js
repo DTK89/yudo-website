@@ -3,41 +3,52 @@ import styled from "styled-components";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { GrLanguage } from "react-icons/gr";
 import LogoIcon from "assets/logo-red.png";
+import routes from "routes/routes.json";
 
 const Wrapper = styled.div`
   z-index: 200;
-  position: sticky;
-  width: 100vw;
-  top: 0;
+  height: 6rem;
+  width: 100%;
   background: var(--clr-secondary);
+  box-shadow: var(--light-shadow);
+  display: flex;
+  flex-direction: column;
 
-  @media screen and (min-width: 992px) {
-    box-shadow: var(--light-shadow);
+  @media screen and (min-width: 800px) {
+    height: 10rem;
+    align-items: center;
   }
 `;
 
-const HeadContainer = styled.div`
+const NavBarContainer = styled.div`
   max-width: var(--max-width);
+  height: 100%;
+  width: 100%;
+`;
+
+const HeadContainer = styled.div`
+  height: 100%;
+  width: 100%;
   margin: 0 auto;
   padding: 0;
   display: flex;
   align-items: center;
   justify-content: space-between;
   transition: var(--transition);
-  @media screen and (min-width: 992px) {
+
+  @media screen and (min-width: 800px) {
     padding: 0 2rem;
+    height: 50%;
   }
 `;
 
 const Logo = styled.a`
   height: auto;
-  /* max-height: 5rem; */
-  /* max-width: 15rem; */
   padding: 0.5rem 1.5rem;
-  /* color: var(--clr-trinary); */
   cursor: pointer;
 
   img {
+    margin-top: 1rem;
     max-height: 5rem;
     max-width: 15rem;
   }
@@ -46,7 +57,7 @@ const Logo = styled.a`
 const LanguageButton = styled.button`
   display: none;
 
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: 800px) {
     color: var(--clr-trinary);
     font-size: 2rem;
     margin: 1rem 1.5rem 0.8rem 0;
@@ -57,7 +68,6 @@ const LanguageButton = styled.button`
     align-items: center;
     outline: none;
     cursor: pointer;
-    /* transform: rotate(${({ isOpen }) => (isOpen ? "180deg" : "0deg")}); */
   }
 `;
 
@@ -76,24 +86,53 @@ const MobileButton = styled.button`
   cursor: pointer;
   /* transform: rotate(${({ isOpen }) => (isOpen ? "180deg" : "0deg")}); */
 
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: 800px) {
     display: none;
   }
 `;
 
+const MenuContainer = styled.ul`
+  height: 50%;
+  width: 100%;
+  max-width: var(--max-width);
+  padding: 0 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+
+  @media screen and (max-width: 800px) {
+    display: none;
+  }
+`;
+
+const StyledLink = styled.a`
+  padding: 1.5rem;
+`;
+
 const Header = () => (
   <Wrapper>
-    <HeadContainer>
-      <Logo>
-        <img src={LogoIcon} alt="" />{" "}
-      </Logo>
-      <LanguageButton>
-        <GrLanguage />
-      </LanguageButton>
-      <MobileButton>
-        <GiHamburgerMenu />
-      </MobileButton>
-    </HeadContainer>
+    <NavBarContainer>
+      <HeadContainer>
+        <Logo>
+          <img src={LogoIcon} alt="" />{" "}
+        </Logo>
+        <LanguageButton>
+          <GrLanguage />
+        </LanguageButton>
+        <MobileButton>
+          <GiHamburgerMenu />
+        </MobileButton>
+      </HeadContainer>
+      <MenuContainer>
+        {/* <ul> */}
+        {routes.map((route) => (
+          <li>
+            <StyledLink href={route.url}>{route.name}</StyledLink>
+          </li>
+        ))}
+        {/* </ul> */}
+      </MenuContainer>
+    </NavBarContainer>
   </Wrapper>
 );
 
