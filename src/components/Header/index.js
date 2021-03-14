@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { GrLanguage } from "react-icons/gr";
-import LogoIcon from "assets/logo-red.png";
+import LogoIcon from "assets/logo/logo-red.png";
 import routes from "routes/routes.json";
 
 const Wrapper = styled.div`
@@ -107,6 +107,16 @@ const MenuContainer = styled.ul`
 
 const StyledLink = styled.a`
   padding: 1.5rem;
+  background: transparent;
+  display: block;
+
+  &:hover {
+    color: var(--clr-primary);
+  }
+
+  &.active {
+    box-shadow: inset 0 -2px 0 0 var(--clr-primary);
+  }
 `;
 
 const Header = () => (
@@ -127,7 +137,9 @@ const Header = () => (
         {/* <ul> */}
         {routes.map((route) => (
           <li>
-            <StyledLink href={route.url}>{route.name}</StyledLink>
+            <StyledLink activeClassName="active" href={route.url}>
+              {route.name}
+            </StyledLink>
           </li>
         ))}
         {/* </ul> */}
