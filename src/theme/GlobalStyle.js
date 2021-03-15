@@ -75,7 +75,7 @@ h3,
 h4,
 h5 {
   letter-spacing: var(--spacing);
-  text-transform: capitalize;
+  /* text-transform: capitalize; */
   font-family: 'Quicksand', sans-serif;
   font-weight: 500;
   line-height: 1.1;
@@ -101,7 +101,7 @@ p {
   font-size: 1.6rem;
   font-weight: 300;
   margin-bottom: 1rem;
-  color: var(--clr-black);
+  /* color: var(--clr-black); */
 }
 `;
 

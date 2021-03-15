@@ -9,8 +9,8 @@ const BackgroundImage = styled.div`
   width: 100%;
   height: 100%;
   background: url(${({ backgroundImg }) => backgroundImg}) no-repeat center
-    center fixed;
-  background-size: cover;
+    center;
+  background-size: contain;
 `;
 
 const BackgroundFilter = styled.div`

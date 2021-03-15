@@ -12,6 +12,7 @@ const Wrapper = styled.div`
   background-color: var(--clr-primary);
   display: flex;
   justify-content: center;
+  border-top: 1px solid white;
 `;
 
 const FooterContainer = styled.div`
