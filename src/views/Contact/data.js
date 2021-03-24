@@ -3,12 +3,12 @@ import contactsImg from "assets/backgrounds/Contacts.jpg";
 export const sections = [
   {
     id: 1,
-    label: "YUDO w Polsce",
+    label: "YUDO Polska",
     url: "/contact",
   },
   {
     id: 2,
-    label: "YUDO na Świecie",
+    label: "Oddziały YUDO",
     url: "/contact/global",
   },
 ];

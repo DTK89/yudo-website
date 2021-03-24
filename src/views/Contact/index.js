@@ -36,7 +36,7 @@ const Contact = () => {
     <SectionTemplate backgroundImg={background} routes={sections}>
       <Switch>
         <Route exact path={path}>
-          <ContactTemplate />
+          <ContactTemplate title={sections[0].label} />
         </Route>
         <Route path={`${path}/global`}>
           <WorldwideContactTemplate />
