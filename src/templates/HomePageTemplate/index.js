@@ -19,7 +19,7 @@ const PageWrapper = styled.div`
 
 const WelcomeSection = styled.div`
   width: 100%;
-  background: url(${backgroundImg}) center center fixed;
+  background: url(${backgroundImg}) no-repeat center center;
   background-size: cover;
   clip-path: polygon(0 0%, 100% 0, 100% 100%, 0 90%);
 `;

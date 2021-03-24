@@ -14,17 +14,17 @@
     "section" : [
         {
             "id": 1,
-            "url": "/",
+            "url": "/about/global",
             "name": "O YUDO"
         },
         {
             "id": 2,
-            "url": "/",
+            "url": "/about/poland",
             "name": "YUDO w Polsce"
         },
         {
             "id": 3,
-            "url": "/",
+            "url": "/about/news",
             "name": "Aktualności"
         }
     ]
@@ -64,7 +64,7 @@
 },
 {
     "id": 4,
-    "url": "/market",
+    "url": "/markets",
     "name": "Rynek",
     "backgroundImg" : "",
     "section" : [
@@ -214,6 +214,17 @@
     "url": "/contact",
     "name": "Kontakt",
     "backgroundImg" : "",
-    "section" : []
+    "section" : [
+        {
+            "id": 1,
+            "url": "/contact",
+            "name": "YUDO w Polsce"
+        },
+        {
+            "id": 2,
+            "url": "/contact/global",
+            "name": "YUDO na Świecie"
+        }
+    ]
 }
 ]

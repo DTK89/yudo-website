@@ -1,6 +1,7 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
 import styled from "styled-components";
-import routes from "routes/routes.json";
+// import routes from "routes/routes.json";
 
 // const Wrapper = styled.div``;
 
@@ -14,7 +15,7 @@ const StyledList = styled.ul`
   }
 `;
 
-const StyledLink = styled.a`
+const StyledLink = styled(NavLink)`
   color: #555;
   text-align: center;
   text-transform: uppercase;
@@ -36,12 +37,12 @@ const StyledLink = styled.a`
   }
 `;
 
-const Sidebar = () => (
+const Sidebar = ({ routes }) => (
   <StyledList>
-    {routes[3].section.map((route) => (
-      <li key={route.id}>
-        <StyledLink activeClassName="active" href={route.url}>
-          {route.name}
+    {routes.map(({ id, label, url }) => (
+      <li key={id}>
+        <StyledLink activeClassName="active" to={url}>
+          {label}
         </StyledLink>
       </li>
     ))}

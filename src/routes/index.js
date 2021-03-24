@@ -1,0 +1,33 @@
+export const routes = {
+  home: "/",
+  aboutUs: "/about",
+  aboutGlobal: "/about/global",
+  products: "/products",
+  product: "/products/:slug",
+  markets: "/markets",
+  market: "/markets/:slug",
+  technologies: "/technology",
+  technology: "/technology/:slug",
+  sucessfulCases: "/sucessful-case",
+  sucessfulCase: "/sucessful-case/:id",
+  download: "/download",
+  contact: "/contact",
+  contactGlobal: "/contact/global",
+};
+
+export const labels = {
+  home: "/",
+  aboutUs: "/about",
+  aboutGlobal: "/about/global",
+  products: "/products",
+  product: "/products/:slug",
+  markets: "/markets",
+  market: "/markets/:slug",
+  technologies: "/technology",
+  technology: "/technology/:slug",
+  sucessfulCases: "/sucessful-case",
+  sucessfulCase: "/sucessful-case/:id",
+  download: "/download",
+  contact: "/contact",
+  contactGlobal: "/contact/global",
+};
