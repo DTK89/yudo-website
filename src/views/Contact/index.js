@@ -9,29 +9,7 @@ import { sections, background } from "./data";
 
 const Contact = () => {
   const { path } = useRouteMatch();
-  // const [contacts, setContacts] = useState([]);
 
-  // useEffect(() => {
-  //   api
-  //     .get(endpoints.contact)
-  //     .then(({ data }) => {
-  //       setContacts(data);
-  //     })
-  //     .catch((error) => {
-  //       console.log(error);
-  //     });
-  // }, []);
-
-  // const {
-  //   companyName,
-  //   street,
-  //   buildingNo,
-  //   localNo,
-  //   postalCode,
-  //   city,
-  //   country,
-  //   nip,
-  // } = contacts;
   return (
     <SectionTemplate backgroundImg={background} routes={sections}>
       <Switch>
@@ -39,7 +17,7 @@ const Contact = () => {
           <ContactTemplate title={sections[0].label} />
         </Route>
         <Route path={`${path}/global`}>
-          <WorldwideContactTemplate />
+          <WorldwideContactTemplate title={sections[1].label} />
         </Route>
       </Switch>
     </SectionTemplate>
