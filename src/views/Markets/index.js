@@ -119,7 +119,7 @@ const MarketDescription = styled.div`
 //   }
 // `;
 
-const Downloads = () => {
+const Markets = () => {
   const { path } = useRouteMatch();
   const [markets, setMarkets] = useState([]);
 
@@ -194,4 +194,4 @@ const Downloads = () => {
   );
 };
 
-export default Downloads;
+export default Markets;

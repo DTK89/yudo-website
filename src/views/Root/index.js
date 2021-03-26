@@ -5,6 +5,7 @@ import GlobalTemplate from "templates/GlobalStyleTemplate";
 import HomePage from "templates/HomePageTemplate";
 import About from "views/About";
 import Markets from "views/Markets";
+import SucessfulCases from "views/SucessfulCases";
 import Downloads from "views/Downloads";
 import Contact from "views/Contact";
 
@@ -19,7 +20,7 @@ function Root() {
             {/* <Route path={routes.download} component={Downloads} /> */}
             <Route path={routes.markets} component={Markets} />
             {/* <Route path={routes.download} component={Downloads} /> */}
-            {/* <Route path={routes.download} component={Downloads} /> */}
+            <Route path={routes.sucessfulCases} component={SucessfulCases} />
             <Route path={routes.download} component={Downloads} />
             <Route path={routes.contact} component={Contact} />
           </Switch>
