@@ -1,4 +1,5 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
 import MainLayoutTemplate from "templates/MainLayoutTemplate";
 import styled from "styled-components";
 import backgroundImg from "assets/backgrounds/HomePage.jpg";
@@ -92,7 +93,7 @@ const ItemButtonWrapper = styled.div`
     margin: 0.5rem auto 1rem;
   }
 
-  button {
+  /* button {
     font-size: 1.2rem;
     font-family: "Roboto";
     color: var(--clr-primary);
@@ -106,6 +107,22 @@ const ItemButtonWrapper = styled.div`
       background-color: var(--clr-primary);
       color: var(--clr-secondary);
     }
+  } */
+`;
+
+const StyledLink = styled(NavLink)`
+  font-size: 1.2rem;
+  font-family: "Roboto";
+  color: var(--clr-primary);
+  background: var(--clr-secondary);
+  border: 1px solid var(--clr-primary);
+  border-radius: 0.3rem;
+  padding: 0.2rem 0.5rem;
+  max-width: 10rem;
+
+  &:hover {
+    background-color: var(--clr-primary);
+    color: var(--clr-secondary);
   }
 `;
 
@@ -188,7 +205,7 @@ const HomePage = () => (
               </ItemIconWrapper>
               <ItemButtonWrapper>
                 <h5>O YUDO</h5>
-                <button type="button">Dowiedz się</button>
+                <StyledLink to="/about/yudo-poland">Dowiedz się</StyledLink>
               </ItemButtonWrapper>
             </DirectionItem>
             <Underline />
@@ -198,7 +215,7 @@ const HomePage = () => (
               </ItemIconWrapper>
               <ItemButtonWrapper>
                 <h5>Kontakt</h5>
-                <button type="button">Skontaktuj się</button>
+                <StyledLink to="/contact/poland">Skontaktuj się</StyledLink>
               </ItemButtonWrapper>
             </DirectionItem>
             <Underline />
@@ -208,7 +225,7 @@ const HomePage = () => (
               </ItemIconWrapper>
               <ItemButtonWrapper>
                 <h5>YUDO na Świecie</h5>
-                <button type="button">Zobacz</button>
+                <StyledLink to="/contact/worldwide">Zobacz</StyledLink>
               </ItemButtonWrapper>
             </DirectionItem>
           </SiteDirectionsWrapper>

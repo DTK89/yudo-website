@@ -139,7 +139,7 @@ const Markets = () => {
       <Switch>
         <Route exact path={`${path}`}>
           {/* <h2>Test</h2> */}
-          <Redirect to="/markets/automobile" />
+          <Redirect to="/markets/automotive" />
         </Route>
         {markets?.length ? (
           <>

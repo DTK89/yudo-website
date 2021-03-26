@@ -3,6 +3,7 @@ import { Switch, Route, Redirect, useRouteMatch } from "react-router-dom";
 import { api, endpoints } from "api";
 // import MarkdownParser from "components/MarkdownParser";
 import SectionTemplate from "templates/SectionTemplate";
+import Modal from "components/Modal";
 import styled from "styled-components";
 import { background } from "./data";
 
@@ -148,6 +149,8 @@ const FileCard = styled.div`
 const SucessfulCases = () => {
   const { path } = useRouteMatch();
   const [marketCases, setMarketCases] = useState([]);
+  const [showModal, setShowModal] = useState(false);
+  const [cardIndex, setCardIndex] = useState(0);
 
   useEffect(() => {
     api
@@ -160,24 +163,37 @@ const SucessfulCases = () => {
       });
   }, []);
 
+  const openModal = (e) => {
+    setCardIndex(e);
+    setShowModal((prev) => !prev);
+  };
+
   return (
     <SectionTemplate backgroundImg={background} routes={marketCases}>
       <Switch>
         <Route exact path={`${path}`}>
-          <Redirect to="/sucessful-case/automobile" />
+          <Redirect to="/sucessful-case/automotive" />
         </Route>
         {marketCases?.length ? (
           <>
             {marketCases.map((listCases) => (
               <Route key={listCases.id} path={`${path}/${listCases.slug}`}>
+                <Modal
+                  showModal={showModal}
+                  setShowModal={setShowModal}
+                  postContent={listCases.sucessfulCases[cardIndex]}
+                />
                 <TitleWrapper>
                   {/* <span /> */}
                   <h2>Sucessful Case</h2>
                   <h4>{listCases.label}</h4>
                 </TitleWrapper>
                 <GridWrapper>
-                  {listCases.sucessfulCases.map((specificCase) => (
-                    <FileCard key={specificCase.id}>
+                  {listCases.sucessfulCases.map((specificCase, index) => (
+                    <FileCard
+                      key={specificCase.id}
+                      onClick={() => openModal(index)}
+                    >
                       {specificCase?.applicationPicture[0]?.formats?.thumbnail
                         ?.url && (
                         <img

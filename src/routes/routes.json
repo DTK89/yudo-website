@@ -14,12 +14,12 @@
     "section" : [
         {
             "id": 1,
-            "url": "/about/global",
+            "url": "/about/yudo-worldwide",
             "name": "O YUDO"
         },
         {
             "id": 2,
-            "url": "/about/poland",
+            "url": "/about/yudo-poland",
             "name": "YUDO w Polsce"
         },
         {
@@ -70,47 +70,47 @@
     "section" : [
         {
             "id": 1,
-            "url": "/",
+            "url": "/markets/automotive",
             "name": "Przemysł samochodowy"
         },
         {
             "id": 2,
-            "url": "/",
+            "url": "/markets/tv",
             "name": "TV"
         },
         {
             "id": 3,
-            "url": "/",
+            "url": "/markets/laptop",
             "name": "Laptopy"
         },
         {
             "id": 4,
-            "url": "/",
+            "url": "/markets/mobile",
             "name": "Telefony"
         },
         {
             "id": 5,
-            "url": "/",
+            "url": "/markets/office",
             "name": "Wyposażenie biura"
         },
         {
             "id": 6,
-            "url": "/",
+            "url": "/markets/home-app",
             "name": "Wyposażenie domu"
         },
         {
             "id": 7,
-            "url": "/",
+            "url": "/markets/packaging",
             "name": "Opakowania"
         },
         {
             "id": 8,
-            "url": "/",
+            "url": "/markets/medical",
             "name": "Medycyna"
         },
         {
             "id": 9,
-            "url": "/",
+            "url": "/markets/industrial",
             "name": "Przemysł ciężki"
         }
     ]
@@ -157,47 +157,47 @@
     "section" : [
         {
             "id": 1,
-            "url": "/",
+            "url": "/sucessful-case/automotive",
             "name": "Przemysł samochodowy"
         },
         {
             "id": 2,
-            "url": "/",
+            "url": "/sucessful-case/tv",
             "name": "TV"
         },
         {
             "id": 3,
-            "url": "/",
+            "url": "/sucessful-case/laptop",
             "name": "Laptopy"
         },
         {
             "id": 4,
-            "url": "/",
+            "url": "/sucessful-case/mobile",
             "name": "Telefony"
         },
         {
             "id": 5,
-            "url": "/",
+            "url": "/sucessful-case/home-app",
             "name": "Wyposażenie biura"
         },
         {
             "id": 6,
-            "url": "/",
+            "url": "/sucessful-case/office",
             "name": "Wyposażenie domu"
         },
         {
             "id": 7,
-            "url": "/",
+            "url": "/sucessful-case/packeging",
             "name": "Opakowania"
         },
         {
             "id": 8,
-            "url": "/",
+            "url": "/sucessful-case/medical",
             "name": "Medycyna"
         },
         {
             "id": 9,
-            "url": "/",
+            "url": "/sucessful-case/industrial",
             "name": "Przemysł ciężki"
         }
     ]
@@ -217,12 +217,12 @@
     "section" : [
         {
             "id": 1,
-            "url": "/contact",
+            "url": "/contact/poland",
             "name": "YUDO w Polsce"
         },
         {
             "id": 2,
-            "url": "/contact/global",
+            "url": "/contact/worldwide",
             "name": "YUDO na Świecie"
         }
     ]
