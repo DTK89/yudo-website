@@ -10,6 +10,14 @@ const TitleWrapper = styled.div`
   display: flex;
   align-items: flex-end;
   margin: 20px 0 30px 0;
+  align-items: center;
+
+  span {
+    background: var(--clr-primary);
+    height: 40px;
+    width: 20px;
+    margin-right: 8px;
+  }
 
   h2 {
     margin: 0 7px 0 0;
@@ -23,6 +31,48 @@ const TitleWrapper = styled.div`
     margin: 0 0 2px 0;
 
     color: #777;
+  }
+`;
+
+const MarketDescription = styled.div`
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-gap: 10px;
+  justify-content: center;
+  align-items: center;
+
+  img {
+    width: 100%;
+    max-height: 250px;
+    object-fit: contain;
+  }
+
+  p {
+    margin-left: 25px;
+    text-align: justify;
+  }
+
+  ul {
+    margin-left: 50px;
+  }
+
+  @media screen and (min-width: 425px) {
+    img {
+      justify-self: center;
+      width: 70%;
+    }
+  }
+
+  @media screen and (min-width: 992px) {
+    grid-template-columns: 1.5fr 1fr;
+    grid-template-rows: minmax(200px, auto);
+    grid-gap: 20px;
+
+    img {
+      justify-self: center;
+      width: 100%;
+      min-width: 300px;
+    }
   }
 `;
 
@@ -77,7 +127,6 @@ const Downloads = () => {
     api
       .get(endpoints.markets)
       .then(({ data }) => {
-        // setRoutes(data.fileSection);
         setMarkets(data);
       })
       .catch((error) => {
@@ -97,10 +146,34 @@ const Downloads = () => {
             {markets.map((market) => (
               <Route key={market.id} path={`${path}/${market.slug}`}>
                 <TitleWrapper>
+                  <span />
                   <h2>{market.label}</h2>
-                  <img src={market.marketPicture[0].url} alt="" />
                 </TitleWrapper>
-                <MarkdownParser>{market.description}</MarkdownParser>
+                <MarketDescription>
+                  <MarkdownParser>{market.description}</MarkdownParser>
+                  <img
+                    src={`http://localhost:1337${market.marketPicture[0].url}`}
+                    alt=""
+                  />
+                </MarketDescription>
+                {market.applications.map((application) => (
+                  <>
+                    <TitleWrapper>
+                      <span />
+                      <h2>{application.name}</h2>
+                    </TitleWrapper>
+                    <MarketDescription>
+                      <MarkdownParser>{application.description}</MarkdownParser>
+                      {application?.picture[0]?.url && (
+                        <img
+                          src={`http://localhost:1337${application.picture[0].url}`}
+                          alt=""
+                        />
+                      )}
+                    </MarketDescription>
+                  </>
+                ))}
+
                 {/* <GridWrapper>
                   {fileGroup.fileDownloads.map((file) => (
                     <FileCard key={file.id}>
