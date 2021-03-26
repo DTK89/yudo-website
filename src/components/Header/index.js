@@ -137,7 +137,7 @@ const Header = () => (
       <MenuContainer>
         {/* <ul> */}
         {routes.map((route) => (
-          <li>
+          <li key={route.id}>
             <StyledLink activeClassName="active" href={route.url}>
               {route.name}
             </StyledLink>

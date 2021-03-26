@@ -17,7 +17,7 @@ const TitleWrapper = styled.div`
   h4 {
     font-size: 19.5px;
     font-weight: 400;
-    margin: 0 0 3px 0;
+    margin: 0 0 2px 0;
 
     color: #777;
   }

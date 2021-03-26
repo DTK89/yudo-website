@@ -4,12 +4,12 @@ export const sections = [
   {
     id: 1,
     label: "YUDO Polska",
-    url: "/contact",
+    slug: "poland",
   },
   {
     id: 2,
     label: "Oddziały YUDO",
-    url: "/contact/global",
+    slug: "worldwide",
   },
 ];
 

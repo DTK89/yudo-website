@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { Switch, Route, useRouteMatch } from "react-router-dom";
+import { Switch, Route, Redirect, useRouteMatch } from "react-router-dom";
 import { api, endpoints } from "api";
+import MarkdownParser from "components/MarkdownParser";
 import SectionTemplate from "templates/SectionTemplate";
 import { sections, background } from "./data";
 
@@ -36,18 +37,29 @@ const About = () => {
   return (
     <SectionTemplate backgroundImg={background} routes={sections}>
       <Switch>
-        <Route exact path={path}>
-          {/* <AboutTemplate /> */}
-          <div>
-            <h2>{aboutInfo.title}</h2>
-            <p>{aboutInfo.description}</p>
-          </div>
+        <Route exact path={`${path}`}>
+          <Redirect to={`${path}/${sections[0].slug}`} />
         </Route>
-        <Route path={`${path}/global`}>
+        <Route path={`${path}/${sections[0].slug}`}>
           {/* <AboutTemplate /> */}
           <div>
             <h2>{aboutInfoGlobal.title}</h2>
-            <p>{aboutInfoGlobal.description}</p>
+            {aboutInfoGlobal.description ? (
+              <MarkdownParser>{aboutInfoGlobal.description}</MarkdownParser>
+            ) : (
+              <h1>Loading</h1>
+            )}
+          </div>
+        </Route>
+        <Route path={`${path}/${sections[1].slug}`}>
+          {/* <AboutTemplate /> */}
+          <div>
+            <h2>{aboutInfo.title}</h2>
+            {aboutInfoGlobal.description ? (
+              <MarkdownParser>{aboutInfo.description}</MarkdownParser>
+            ) : (
+              <h1>Loading</h1>
+            )}
           </div>
         </Route>
       </Switch>

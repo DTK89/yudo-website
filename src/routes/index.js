@@ -1,7 +1,6 @@
 export const routes = {
   home: "/",
   aboutUs: "/about",
-  aboutGlobal: "/about/global",
   products: "/products",
   product: "/products/:slug",
   markets: "/markets",
@@ -12,7 +11,6 @@ export const routes = {
   sucessfulCase: "/sucessful-case/:id",
   download: "/download",
   contact: "/contact",
-  contactGlobal: "/contact/global",
 };
 
 export const labels = {

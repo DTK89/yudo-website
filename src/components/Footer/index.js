@@ -114,7 +114,7 @@ const Footer = () => (
             <StyledLink href={Routes[1].url}>{Routes[1].name}</StyledLink>
             <SyledSubList>
               {Routes[1].section.map((section) => (
-                <li>
+                <li key={section.id}>
                   <StyledSubLink href={section.url}>
                     {section.name}
                   </StyledSubLink>
@@ -128,7 +128,7 @@ const Footer = () => (
             <StyledLink href={Routes[2].url}>{Routes[2].name}</StyledLink>
             <SyledSubList>
               {Routes[2].section.map((section) => (
-                <li>
+                <li key={section.id}>
                   <StyledSubLink href={section.url}>
                     {section.name}
                   </StyledSubLink>
@@ -140,7 +140,7 @@ const Footer = () => (
             <StyledLink href={Routes[3].url}>{Routes[3].name}</StyledLink>
             <SyledSubList>
               {Routes[3].section.map((section) => (
-                <li>
+                <li key={section.id}>
                   <StyledSubLink href={section.url}>
                     {section.name}
                   </StyledSubLink>
@@ -152,7 +152,7 @@ const Footer = () => (
             <StyledLink href={Routes[4].url}>{Routes[4].name}</StyledLink>
             <SyledSubList>
               {Routes[4].section.map((section) => (
-                <li>
+                <li key={section.id}>
                   <StyledSubLink href={section.url}>
                     {section.name}
                   </StyledSubLink>
@@ -164,7 +164,7 @@ const Footer = () => (
             <StyledLink href={Routes[5].url}>{Routes[5].name}</StyledLink>
             <SyledSubList>
               {Routes[5].section.map((section) => (
-                <li>
+                <li key={section.id}>
                   <StyledSubLink href={section.url}>
                     {section.name}
                   </StyledSubLink>

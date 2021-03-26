@@ -4,6 +4,8 @@ import { routes } from "routes";
 import GlobalTemplate from "templates/GlobalStyleTemplate";
 import HomePage from "templates/HomePageTemplate";
 import About from "views/About";
+import Markets from "views/Markets";
+import Downloads from "views/Downloads";
 import Contact from "views/Contact";
 
 function Root() {
@@ -14,19 +16,11 @@ function Root() {
           <Switch>
             <Route exact path={routes.home} component={HomePage} />
             <Route path={routes.aboutUs} component={About} />
-            <Route path={routes.aboutGlobal} component={About} />
-            {/* <Route
-              exact
-              path={routes.twitters}
-              component={Twitters}
-              pageType="twitters"
-            /> */}
-            {/* <Route
-              path={routes.twitter}
-              component={DetailsPage}
-              pageType="notes"
-            /> */}
             {/* <Route path={routes.download} component={Downloads} /> */}
+            <Route path={routes.markets} component={Markets} />
+            {/* <Route path={routes.download} component={Downloads} /> */}
+            {/* <Route path={routes.download} component={Downloads} /> */}
+            <Route path={routes.download} component={Downloads} />
             <Route path={routes.contact} component={Contact} />
           </Switch>
         </BrowserRouter>

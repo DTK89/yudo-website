@@ -1,5 +1,5 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useRouteMatch } from "react-router-dom";
 import styled from "styled-components";
 // import routes from "routes/routes.json";
 
@@ -37,16 +37,19 @@ const StyledLink = styled(NavLink)`
   }
 `;
 
-const Sidebar = ({ routes }) => (
-  <StyledList>
-    {routes.map(({ id, label, url }) => (
-      <li key={id}>
-        <StyledLink activeClassName="active" to={url}>
-          {label}
-        </StyledLink>
-      </li>
-    ))}
-  </StyledList>
-);
+const Sidebar = ({ routes }) => {
+  const { url } = useRouteMatch();
+  return (
+    <StyledList>
+      {routes.map(({ id, label, slug }) => (
+        <li key={id}>
+          <StyledLink activeClassName="active" to={`${url}/${slug}`}>
+            {label}
+          </StyledLink>
+        </li>
+      ))}
+    </StyledList>
+  );
+};
 
 export default Sidebar;
