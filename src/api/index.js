@@ -7,6 +7,7 @@ export const api = axios.create({
 export const endpoints = {
   about: "about-us/",
   aboutGlobal: "about-yudo/",
+  products: "products/",
   markets: "markets/",
   sucessfulCase: "sucessful-case/",
   downloads: "download/",

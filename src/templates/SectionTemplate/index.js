@@ -21,6 +21,7 @@ const SectionContent = styled.div`
   border-radius: 2px;
   width: 76%;
   padding: 10px 15px;
+  height: 100%;
 
   @media screen and (max-width: 768px) {
     margin: 0;

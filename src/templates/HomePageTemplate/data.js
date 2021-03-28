@@ -11,14 +11,14 @@ export const productCards = [
     image: tina,
     title: "Systemy z serii TINA",
     description: `Poznaj serię systemów dopasowanych do Twoich potrzeb.`,
-    btnLink: "/",
+    btnLink: "/products/hot-runner-system/tina-am",
   },
   {
     id: 2,
     image: controller,
     title: "Kontrolery temperatur",
     description: `Poznaj serię kontrolerów CW i wybierz ten, który zaspokoi potrzeby Twojej linii produkcyjnej.`,
-    btnLink: "/",
+    btnLink: "/products/hot-half-system/hot-half",
   },
   {
     id: 3,

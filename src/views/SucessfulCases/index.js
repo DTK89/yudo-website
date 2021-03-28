@@ -98,6 +98,7 @@ const FileCard = styled.div`
   display: grid;
   grid-gap: 10px;
   grid-template-columns: 1fr;
+  cursor: pointer;
 
   @media screen and (min-width: 500px) {
     grid-template-columns: 1fr 1.5fr;

@@ -1,11 +1,10 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import styled from "styled-components";
-// import cardPic from "assets/cards/Tina.png";
 
-const Wrapper = styled.div`
+const Wrapper = styled(Link)`
   height: 100%;
-  /* min-height: 280px; */
   width: 100%;
   padding: 10px;
   display: flex;
