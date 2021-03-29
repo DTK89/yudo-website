@@ -18,7 +18,7 @@ const Background = styled.div`
 
 const ModalWrapper = styled.div`
   width: 90%;
-  height: 60%;
+  height: 80%;
   padding: 10px;
   box-shadow: 0 5px 16px rgba(0, 0, 0, 0.2);
   background: #fff;
@@ -31,6 +31,7 @@ const ModalWrapper = styled.div`
 
   @media screen and (min-width: 425px) {
     grid-template-columns: 1fr 1fr;
+    height: 60%;
   }
 
   @media screen and (min-width: 768px) {
@@ -116,7 +117,7 @@ const Modal = ({ showModal, setShowModal, postContent }) => {
           <ModalWrapper showModal={showModal}>
             {postContent?.applicationPicture[0]?.formats?.thumbnail?.url && (
               <ModalImg
-                src={`http://localhost:1337${postContent.applicationPicture[0].formats.medium.url}`}
+                src={`${postContent.applicationPicture[0].formats.medium.url}`}
                 alt=""
               />
             )}

@@ -41,7 +41,6 @@ const About = () => {
           <Redirect to={`${path}/${sections[0].slug}`} />
         </Route>
         <Route path={`${path}/${sections[0].slug}`}>
-          {/* <AboutTemplate /> */}
           <div>
             <h2>{aboutInfoGlobal.title}</h2>
             {aboutInfoGlobal.description ? (
@@ -52,7 +51,6 @@ const About = () => {
           </div>
         </Route>
         <Route path={`${path}/${sections[1].slug}`}>
-          {/* <AboutTemplate /> */}
           <div>
             <h2>{aboutInfo.title}</h2>
             {aboutInfoGlobal.description ? (

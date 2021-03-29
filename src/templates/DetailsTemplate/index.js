@@ -73,7 +73,7 @@ const ProductDescription = styled.div`
   }
 `;
 
-const ProductDetailsTemplate = ({ slug }) => {
+const DetailsTemplate = ({ slug }) => {
   const [pageContent, setPageContent] = useState([]);
 
   useEffect(() => {
@@ -113,4 +113,4 @@ const ProductDetailsTemplate = ({ slug }) => {
 //   }).isRequired,
 // };
 
-export default ProductDetailsTemplate;
+export default DetailsTemplate;

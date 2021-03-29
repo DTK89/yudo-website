@@ -12,7 +12,7 @@ const Products = () => {
 
   useEffect(() => {
     api
-      .get(endpoints.products)
+      .get(endpoints.productList)
       .then(({ data }) => {
         setProducts(data);
       })
@@ -22,35 +22,31 @@ const Products = () => {
   }, []);
 
   return (
-    <SectionTemplate
-      backgroundImg={background}
-      routes={products.productSection}
-    >
+    <SectionTemplate backgroundImg={background} routes={products.productList}>
       <Switch>
         <Route exact path={`${path}`}>
-          <Redirect to="/products/hot-runner-system/tina-am" />
+          <Redirect to="/products/hot-runner-systems/tina-am" />
         </Route>
-        {products?.productSection?.length ? (
+        {products?.productList?.length ? (
           <>
-            {products.productSection.map((productsList) => (
-              <Route
-                key={productsList.label}
-                path={`${path}/${productsList.slug}`}
-              >
-                {productsList?.product?.length > 1 ? (
-                  <>
-                    {productsList.product.map((product) => (
-                      <Route
-                        key={product.label}
-                        path={`${path}/${productsList.slug}/${product.slug}`}
-                      >
-                        <ProductDetailsTemplate product={product} />
-                      </Route>
-                    ))}
-                  </>
-                ) : (
-                  <ProductDetailsTemplate product={productsList} />
-                )}
+            {products.productList.map((list) => (
+              <Route key={list.label} path={`${path}/${list.slug}`}>
+                <>
+                  {list?.product?.length > 1 ? (
+                    <>
+                      {list.product.map((product) => (
+                        <Route
+                          key={product.label}
+                          path={`${path}/${list.slug}/${product.slug}`}
+                        >
+                          <ProductDetailsTemplate slug={product.slug} />
+                        </Route>
+                      ))}
+                    </>
+                  ) : (
+                    <ProductDetailsTemplate slug={list.slug} />
+                  )}
+                </>
               </Route>
             ))}
           </>

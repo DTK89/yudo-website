@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
-import Slide from "components/Slide";
+import Slide from "templates/SlideGeneralTemplate";
+import Slide1 from "templates/SlideSucessfulCaseTemplate";
 import Dots from "components/Dots";
 import ArrowButton from "components/ArrowButton";
 
@@ -22,7 +23,7 @@ const SlideContainer = styled.div`
   transition: 1s;
 `;
 
-const Slider = ({ slides }) => {
+const Slider = ({ slides, secondary }) => {
   const [slideState, setSlideState] = useState({
     activeSlide: 0,
     xTranslate: 0,
@@ -63,7 +64,8 @@ const Slider = ({ slides }) => {
     <Wrapper>
       {slides.map((slide) => (
         <SlideContainer key={slide.id} translate={`${xTranslate}%`}>
-          <Slide content={slide} />
+          {!secondary && <Slide content={slide} />}
+          {secondary && <Slide1 content={slide} />}
         </SlideContainer>
       ))}
       <ArrowButton left onClick={prevSlide} />

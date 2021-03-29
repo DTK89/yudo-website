@@ -198,7 +198,7 @@ const SucessfulCases = () => {
                       {specificCase?.applicationPicture[0]?.formats?.thumbnail
                         ?.url && (
                         <img
-                          src={`http://localhost:1337${specificCase.applicationPicture[0].formats.thumbnail.url}`}
+                          src={`${specificCase.applicationPicture[0].formats.thumbnail.url}`}
                           alt=""
                         />
                       )}

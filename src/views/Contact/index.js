@@ -3,7 +3,7 @@ import { Switch, Route, Redirect, useRouteMatch } from "react-router-dom";
 // import { api, endpoints } from "api";
 import SectionTemplate from "templates/SectionTemplate";
 import ContactTemplate from "templates/ContactTemplate";
-import WorldwideContactTemplate from "templates/WorldwideContactTemplate";
+import WorldwideContactTemplate from "templates/ContactWorldwideTemplate";
 // import styled from "styled-components";
 import { sections, background } from "./data";
 

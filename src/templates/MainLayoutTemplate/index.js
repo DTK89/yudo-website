@@ -25,13 +25,11 @@ const BackgroundFilter = styled.div`
 `;
 
 const MainLayout = ({ children, backgroundImg }) => (
-  <>
-    <BackgroundImage backgroundImg={backgroundImg}>
-      <Header />
-      <BackgroundFilter>{children}</BackgroundFilter>
-      <Footer />
-    </BackgroundImage>
-  </>
+  <BackgroundImage backgroundImg={backgroundImg}>
+    <Header />
+    <BackgroundFilter>{children}</BackgroundFilter>
+    <Footer />
+  </BackgroundImage>
 );
 
 MainLayout.propTypes = {

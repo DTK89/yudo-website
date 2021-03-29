@@ -33,8 +33,8 @@ const containerStyle = {
 };
 
 const position = {
-  lat: 51.074869,
-  lng: 17.002877,
+  lat: 51.163123741967034,
+  lng: 16.934354598019333,
 };
 
 const options = {

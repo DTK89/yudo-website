@@ -78,7 +78,7 @@ const ProductDetailsTemplate = ({ slug }) => {
 
   useEffect(() => {
     api
-      .get(`${endpoints.products}${slug}`)
+      .get(`${endpoints.technologies}${slug}`)
       .then(({ data }) => {
         setPageContent(data);
       })

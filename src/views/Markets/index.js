@@ -151,13 +151,10 @@ const Markets = () => {
                 </TitleWrapper>
                 <MarketDescription>
                   <MarkdownParser>{market.description}</MarkdownParser>
-                  <img
-                    src={`http://localhost:1337${market.marketPicture[0].url}`}
-                    alt=""
-                  />
+                  <img src={`${market.marketPicture[0].url}`} alt="" />
                 </MarketDescription>
                 {market.applications.map((application) => (
-                  <>
+                  <div key={application.id}>
                     <TitleWrapper>
                       <span />
                       <h2>{application.name}</h2>
@@ -165,13 +162,10 @@ const Markets = () => {
                     <MarketDescription>
                       <MarkdownParser>{application.description}</MarkdownParser>
                       {application?.picture[0]?.url && (
-                        <img
-                          src={`http://localhost:1337${application.picture[0].url}`}
-                          alt=""
-                        />
+                        <img src={`${application.picture[0].url}`} alt="" />
                       )}
                     </MarketDescription>
-                  </>
+                  </div>
                 ))}
 
                 {/* <GridWrapper>

@@ -1,4 +1,5 @@
 import React from "react";
+import { Link, NavLink } from "react-router-dom";
 import styled from "styled-components";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { GrLanguage } from "react-icons/gr";
@@ -43,7 +44,7 @@ const HeadContainer = styled.div`
   }
 `;
 
-const Logo = styled.a`
+const Logo = styled(Link)`
   height: auto;
   padding: 0.5rem 1.5rem;
   cursor: pointer;
@@ -106,7 +107,7 @@ const MenuContainer = styled.ul`
   }
 `;
 
-const StyledLink = styled.a`
+const StyledLink = styled(NavLink)`
   padding: 1.5rem;
   background: transparent;
   display: block;
@@ -124,13 +125,13 @@ const Header = () => (
   <Wrapper>
     <NavBarContainer>
       <HeadContainer>
-        <Logo>
+        <Logo to="/">
           <img src={LogoIcon} alt="" />{" "}
         </Logo>
         <LanguageButton>
           <GrLanguage />
         </LanguageButton>
-        <MobileButton>
+        <MobileButton onClick={() => console.log("click")}>
           <GiHamburgerMenu />
         </MobileButton>
       </HeadContainer>
@@ -138,7 +139,7 @@ const Header = () => (
         {/* <ul> */}
         {routes.map((route) => (
           <li key={route.id}>
-            <StyledLink activeClassName="active" href={route.url}>
+            <StyledLink activeClassName="active" to={route.url}>
               {route.name}
             </StyledLink>
           </li>

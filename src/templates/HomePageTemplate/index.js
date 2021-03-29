@@ -1,11 +1,13 @@
-import React from "react";
-import { NavLink } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import { api, endpoints } from "api";
 import MainLayoutTemplate from "templates/MainLayoutTemplate";
 import styled from "styled-components";
 import backgroundImg from "assets/backgrounds/HomePage.jpg";
 import { FaPhoneSquareAlt, FaGlobeAmericas } from "react-icons/fa";
 import yudoIcon from "assets/icons/YudoIcon.jpg";
 import Slider from "components/Slider";
+// import Slide from "components/Slide";
 import slides from "components/Slider/data";
 import Card from "components/Card";
 import { productCards, casesCards, technologyCards } from "./data";
@@ -30,32 +32,53 @@ const WelcomeSectionContainer = styled.div`
   max-width: var(--max-width);
   margin: 40px auto 80px;
   padding: 0 30px;
-  display: flex;
-  flex-direction: row;
+  display: grid;
+  grid-gap: 20px;
+  grid-template-columns: 100%;
+
+  @media screen and (min-width: 768px) {
+    grid-template-columns: 30% 67%;
+  }
+  @media screen and (min-width: 1200px) {
+    grid-template-columns: 22% 52% 22%;
+  }
 `;
 
 const SliderWrapper = styled.div`
   background: white;
   border-radius: 3px;
-  height: 350px;
-  width: 76%;
+  width: 100%;
+  height: 100%;
 
-  @media screen and (max-width: 1200px) {
-    margin: 0;
+  @media screen and (min-width: 1200px) {
     width: 100%;
-    height: 100%;
+    height: 350px;
+  }
+`;
+const StyledSliderWrapper = styled(SliderWrapper)`
+  display: none;
+  background: white;
+  border-radius: 3px;
+  height: 100%;
+
+  @media screen and (min-width: 768px) {
+    display: block;
+  }
+  @media screen and (min-width: 1200px) {
+    width: 100%;
+    height: 350px;
   }
 `;
 
 const SiteDirectionsWrapper = styled.div`
+  display: none;
   background: white;
   border-radius: 0.3rem;
-  width: 24%;
-  margin-left: 3rem;
   padding: 1rem 1.5rem;
 
-  @media screen and (max-width: 1200px) {
-    display: none;
+  @media screen and (min-width: 1200px) {
+    display: block;
+    width: 100%;
   }
 `;
 
@@ -110,7 +133,7 @@ const ItemButtonWrapper = styled.div`
   } */
 `;
 
-const StyledLink = styled(NavLink)`
+const StyledLink = styled(Link)`
   font-size: 1.2rem;
   font-family: "Roboto";
   color: var(--clr-primary);
@@ -133,31 +156,24 @@ const ProductsOverviewSection = styled.div`
   background: transparent;
 `;
 
-const CasesOverviewSection = styled.div`
+const TechnologyOverviewSection = styled.div`
   min-height: 400px;
   padding-top: 40px;
   padding-bottom: 20px;
   width: 100%;
-  clip-path: polygon(0 10%, 100% 0, 100% 100%, 0 90%);
+  clip-path: polygon(0 10%, 100% 0, 100% 100%, 0 100%);
   background: var(--clr-primary);
   color: var(--clr-secondary);
 
   @media screen and (max-width: 992px) {
-    clip-path: polygon(0 5%, 100% 0, 100% 100%, 0 95%);
+    clip-path: polygon(0 5%, 100% 0, 100% 100%, 0 100%);
   }
-`;
-
-const TechnologyOverviewSection = styled.div`
-  min-height: 400px;
-  width: 100%;
-  /* clip-path: polygon(0 10%, 100% 0, 100% 100%, 0 100%); */
-  background: transparent;
 `;
 
 const SectionContainer = styled.div`
   width: 100%;
   max-width: var(--max-width);
-  margin: 40px auto 80px;
+  margin: 30px auto 30px;
   padding: 0 30px;
   display: flex;
   flex-direction: column;
@@ -183,6 +199,7 @@ const BoxWrapper = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   grid-gap: 30px;
+  color: inherit;
 
   @media screen and (max-width: 992px) {
     grid-template-columns: 1fr;
@@ -190,97 +207,103 @@ const BoxWrapper = styled.div`
   }
 `;
 
-const HomePage = () => (
-  <MainLayoutTemplate>
-    <PageWrapper>
-      <WelcomeSection>
-        <WelcomeSectionContainer>
-          <SliderWrapper>
-            <Slider slides={slides} />
-          </SliderWrapper>
-          <SiteDirectionsWrapper>
-            <DirectionItem>
-              <ItemIconWrapper>
-                <img src={yudoIcon} alt="" />
-              </ItemIconWrapper>
-              <ItemButtonWrapper>
-                <h5>O YUDO</h5>
-                <StyledLink to="/about/yudo-poland">Dowiedz się</StyledLink>
-              </ItemButtonWrapper>
-            </DirectionItem>
+const HomePage = () => {
+  const [sucessfulCases, setSucessfulCases] = useState([]);
+
+  console.log(sucessfulCases);
+
+  useEffect(() => {
+    api
+      .get(endpoints.sucessfulCases)
+      .then(({ data }) => {
+        setSucessfulCases(data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
+
+  return (
+    <MainLayoutTemplate>
+      <PageWrapper>
+        <WelcomeSection>
+          <WelcomeSectionContainer>
+            <StyledSliderWrapper>
+              <Slider secondary slides={casesCards} />
+            </StyledSliderWrapper>
+            <SliderWrapper>
+              <Slider slides={slides} />
+            </SliderWrapper>
+            <SiteDirectionsWrapper>
+              <DirectionItem>
+                <ItemIconWrapper>
+                  <img src={yudoIcon} alt="" />
+                </ItemIconWrapper>
+                <ItemButtonWrapper>
+                  <h5>O YUDO</h5>
+                  <StyledLink to="/about/yudo-poland">Dowiedz się</StyledLink>
+                </ItemButtonWrapper>
+              </DirectionItem>
+              <Underline />
+              <DirectionItem>
+                <ItemIconWrapper>
+                  <FaPhoneSquareAlt />
+                </ItemIconWrapper>
+                <ItemButtonWrapper>
+                  <h5>Kontakt</h5>
+                  <StyledLink to="/contact/poland">Skontaktuj się</StyledLink>
+                </ItemButtonWrapper>
+              </DirectionItem>
+              <Underline />
+              <DirectionItem>
+                <ItemIconWrapper>
+                  <FaGlobeAmericas />
+                </ItemIconWrapper>
+                <ItemButtonWrapper>
+                  <h5>YUDO na Świecie</h5>
+                  <StyledLink to="/contact/worldwide">Zobacz</StyledLink>
+                </ItemButtonWrapper>
+              </DirectionItem>
+            </SiteDirectionsWrapper>
+          </WelcomeSectionContainer>
+        </WelcomeSection>
+        <ProductsOverviewSection>
+          <SectionContainer>
+            <h1>Produkty</h1>
             <Underline />
-            <DirectionItem>
-              <ItemIconWrapper>
-                <FaPhoneSquareAlt />
-              </ItemIconWrapper>
-              <ItemButtonWrapper>
-                <h5>Kontakt</h5>
-                <StyledLink to="/contact/poland">Skontaktuj się</StyledLink>
-              </ItemButtonWrapper>
-            </DirectionItem>
-            <Underline />
-            <DirectionItem>
-              <ItemIconWrapper>
-                <FaGlobeAmericas />
-              </ItemIconWrapper>
-              <ItemButtonWrapper>
-                <h5>YUDO na Świecie</h5>
-                <StyledLink to="/contact/worldwide">Zobacz</StyledLink>
-              </ItemButtonWrapper>
-            </DirectionItem>
-          </SiteDirectionsWrapper>
-        </WelcomeSectionContainer>
-      </WelcomeSection>
-      <ProductsOverviewSection>
-        <SectionContainer>
-          <h1>Produkty</h1>
-          <Underline />
-          <BoxWrapper>
-            {productCards.map((product) => (
-              <Card
-                image={product.image}
-                title={product.title}
-                description={product.description}
-                btnLink={product.btnLink}
-              />
-            ))}
-          </BoxWrapper>
-        </SectionContainer>
-      </ProductsOverviewSection>
-      <CasesOverviewSection>
-        <SectionContainer>
-          <h1>Successful Cases</h1>
-          <Underline secondary />
-          <BoxWrapper>
-            {casesCards.map((product) => (
-              <Card
-                image={product.image}
-                title={product.title}
-                description={product.description}
-                btnLink={product.btnLink}
-              />
-            ))}
-          </BoxWrapper>
-        </SectionContainer>
-      </CasesOverviewSection>
-      <TechnologyOverviewSection>
-        <SectionContainer>
-          <h1>Technologie</h1>
-          <Underline />
-          <BoxWrapper>
-            {technologyCards.map((product) => (
-              <Card
-                image={product.image}
-                title={product.title}
-                description={product.description}
-                btnLink={product.btnLink}
-              />
-            ))}
-          </BoxWrapper>
-        </SectionContainer>
-      </TechnologyOverviewSection>
-    </PageWrapper>
-  </MainLayoutTemplate>
-);
+            <BoxWrapper>
+              {productCards.map((product) => (
+                <Card
+                  key={product.id}
+                  image={product.image}
+                  title={product.title}
+                  description={product.description}
+                  btnLink={product.visitPath}
+                />
+              ))}
+            </BoxWrapper>
+          </SectionContainer>
+        </ProductsOverviewSection>
+        <TechnologyOverviewSection>
+          <SectionContainer>
+            <h1>Technologie</h1>
+            <Underline secondary />
+            <BoxWrapper>
+              {technologyCards.map((product) => (
+                <Card
+                  key={product.id}
+                  image={product.image}
+                  title={product.title}
+                  description={product.description}
+                  btnLink={product.visitPath}
+                />
+              ))}
+            </BoxWrapper>
+          </SectionContainer>
+        </TechnologyOverviewSection>
+      </PageWrapper>
+    </MainLayoutTemplate>
+  );
+};
 
 export default HomePage;

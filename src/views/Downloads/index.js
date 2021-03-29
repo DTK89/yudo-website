@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Switch, Route, Redirect, useRouteMatch } from "react-router-dom";
+import { Switch, Route, Redirect, useRouteMatch, Link } from "react-router-dom";
 import { api, endpoints } from "api";
 import SectionTemplate from "templates/SectionTemplate";
 import styled from "styled-components";
@@ -105,15 +105,15 @@ const Downloads = () => {
                     <FileCard key={file.id}>
                       <h4>{file.label}</h4>
                       <p>Rozmiar: {file.file[0].size} kB</p>
-                      <a
-                        href={`http://localhost:1337${file.file[0].url}`}
+                      <Link
+                        to={`http://localhost:1337${file.file[0].url}`}
                         download
-                        through
+                        // through
                         target="_blank"
                         rel="noreferrer"
                       >
                         Plik
-                      </a>
+                      </Link>
                     </FileCard>
                   ))}
                 </GridWrapper>

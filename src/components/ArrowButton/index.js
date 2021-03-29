@@ -6,7 +6,7 @@ import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 const Wrapper = styled.button`
   position: absolute;
   top: 0;
-  width: 5%;
+  width: 6%;
   height: 100%;
   display: flex;
   justify-content: center;
@@ -36,7 +36,7 @@ const SvgWrapper = styled.span`
   font-size: 1.8rem;
   transition: transform ease 500ms;
   @media screen and (min-width: 768px) {
-    font-size: 4rem;
+    font-size: 2.5rem;
   }
   svg {
     display: block;

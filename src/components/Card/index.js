@@ -12,6 +12,7 @@ const Wrapper = styled(Link)`
   align-items: center;
   transition: transform 0.3s ease-out;
   cursor: pointer;
+  color: inherit;
 
   img {
     width: 100%;
@@ -39,10 +40,10 @@ const Card = ({ image, title, description, btnLink }) => (
 
 Card.propTypes = {
   // id: PropTypes.number.isRequired,
-  image: PropTypes.isRequired,
-  title: PropTypes.isRequired,
-  description: PropTypes.isRequired,
-  btnLink: PropTypes.isRequired,
+  image: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+  description: PropTypes.string.isRequired,
+  btnLink: PropTypes.string.isRequired,
 };
 
 export default Card;
