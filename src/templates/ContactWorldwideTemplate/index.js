@@ -81,7 +81,7 @@ const WorldwideContactTemplate = ({ title }) => {
         setContacts(data);
       })
       .catch((error) => {
-        console.log(error);
+        console.error(error);
       });
   }, []);
 

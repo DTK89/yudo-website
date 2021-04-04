@@ -17,7 +17,7 @@ const Technology = () => {
         setProducts(data);
       })
       .catch((error) => {
-        console.log(error);
+        console.error(error);
       });
   }, []);
 
@@ -30,30 +30,13 @@ const Technology = () => {
         <Route exact path={`${path}`}>
           <Redirect to="/technology/iso" />
         </Route>
-        {products?.technologyList?.length ? (
-          <>
-            {products.technologyList.map((list) => (
-              <Route key={list.label} path={`${path}/${list.slug}`}>
-                {list?.product?.length > 1 ? (
-                  <>
-                    {list.product.map((product) => (
-                      <Route
-                        key={product.label}
-                        path={`${path}/${list.slug}/${product.slug}`}
-                      >
-                        <TechnologyDetailsTemplate slug={product.slug} />
-                      </Route>
-                    ))}
-                  </>
-                ) : (
-                  <TechnologyDetailsTemplate slug={list.slug} />
-                )}
-              </Route>
-            ))}
-          </>
-        ) : (
-          <h2>loading</h2>
-        )}
+
+        <Route exact path={`${path}/:slug`}>
+          <TechnologyDetailsTemplate />
+        </Route>
+        <Route path={`${path}/:slug/:slug`}>
+          <TechnologyDetailsTemplate />
+        </Route>
       </Switch>
     </SectionTemplate>
   );

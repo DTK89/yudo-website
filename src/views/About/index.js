@@ -18,7 +18,7 @@ const About = () => {
         // console.log(data);
       })
       .catch((error) => {
-        console.log(error);
+        console.error(error);
       });
   }, []);
 
@@ -30,7 +30,7 @@ const About = () => {
         // console.log(data);
       })
       .catch((error) => {
-        console.log(error);
+        console.error(error);
       });
   }, []);
 

@@ -7,52 +7,31 @@ import { background } from "./data";
 
 const Products = () => {
   const { path } = useRouteMatch();
-  // const { slug } = useParams();
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
     api
       .get(endpoints.productList)
       .then(({ data }) => {
-        setProducts(data);
+        setProducts(data.productList);
       })
       .catch((error) => {
-        console.log(error);
+        console.error(error);
       });
   }, []);
 
   return (
-    <SectionTemplate backgroundImg={background} routes={products.productList}>
+    <SectionTemplate backgroundImg={background} routes={products}>
       <Switch>
         <Route exact path={`${path}`}>
           <Redirect to="/products/hot-runner-systems/tina-am" />
         </Route>
-        {products?.productList?.length ? (
-          <>
-            {products.productList.map((list) => (
-              <Route key={list.label} path={`${path}/${list.slug}`}>
-                <>
-                  {list?.product?.length > 1 ? (
-                    <>
-                      {list.product.map((product) => (
-                        <Route
-                          key={product.label}
-                          path={`${path}/${list.slug}/${product.slug}`}
-                        >
-                          <ProductDetailsTemplate slug={product.slug} />
-                        </Route>
-                      ))}
-                    </>
-                  ) : (
-                    <ProductDetailsTemplate slug={list.slug} />
-                  )}
-                </>
-              </Route>
-            ))}
-          </>
-        ) : (
-          <h2>loading</h2>
-        )}
+        <Route exact path={`${path}/:slug`}>
+          <ProductDetailsTemplate />
+        </Route>
+        <Route path={`${path}/:slug/:slug`}>
+          <ProductDetailsTemplate />
+        </Route>
       </Switch>
     </SectionTemplate>
   );

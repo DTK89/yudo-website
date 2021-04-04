@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-// import PropTypes from "prop-types";
+import { useParams } from "react-router-dom";
 import { api, endpoints } from "api";
 import MarkdownParser from "components/MarkdownParser";
 import styled from "styled-components";
@@ -73,8 +73,9 @@ const ProductDescription = styled.div`
   }
 `;
 
-const ProductDetailsTemplate = ({ slug }) => {
+const ProductDetailsTemplate = () => {
   const [pageContent, setPageContent] = useState([]);
+  const { slug } = useParams();
 
   useEffect(() => {
     api
@@ -83,9 +84,9 @@ const ProductDetailsTemplate = ({ slug }) => {
         setPageContent(data);
       })
       .catch((error) => {
-        console.log(error);
+        console.error(error);
       });
-  }, []);
+  }, [slug]);
 
   return (
     <ContentWrapper>
@@ -105,12 +106,5 @@ const ProductDetailsTemplate = ({ slug }) => {
     </ContentWrapper>
   );
 };
-
-// ProductDetailsTemplate.propTypes = {
-//   product: PropTypes.shape({
-//     label: PropTypes.string,
-//     description: PropTypes.string,
-//   }).isRequired,
-// };
 
 export default ProductDetailsTemplate;

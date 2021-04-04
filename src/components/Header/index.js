@@ -131,7 +131,7 @@ const Header = () => (
         <LanguageButton>
           <GrLanguage />
         </LanguageButton>
-        <MobileButton onClick={() => console.log("click")}>
+        <MobileButton onClick={() => console.warn("click")}>
           <GiHamburgerMenu />
         </MobileButton>
       </HeadContainer>

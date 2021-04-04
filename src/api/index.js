@@ -12,6 +12,8 @@ export const endpoints = {
   products: "products?slug=",
   technologyList: "technology-list/",
   technologies: "technologies?slug=",
+  marketList: "market-list/",
+  market: "markets?slug=",
   markets: "markets/",
   sucessfulCases: "sucessful-cases?_limit=3",
   downloads: "download/",

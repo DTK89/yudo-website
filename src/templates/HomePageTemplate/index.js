@@ -210,7 +210,7 @@ const BoxWrapper = styled.div`
 const HomePage = () => {
   const [sucessfulCases, setSucessfulCases] = useState([]);
 
-  console.log(sucessfulCases);
+  console.warn(sucessfulCases);
 
   useEffect(() => {
     api
@@ -219,7 +219,7 @@ const HomePage = () => {
         setSucessfulCases(data);
       })
       .catch((error) => {
-        console.log(error);
+        console.error(error);
       });
   }, []);
 
