@@ -1,9 +1,12 @@
-import React from "react";
+import React, { useContext } from "react";
 import PropTypes from "prop-types";
+// import { api, endpoints } from "api";
 import Header from "components/Header";
 import Footer from "components/Footer";
 import styled from "styled-components";
 import backupImg from "assets/backgrounds/Products.jpg";
+// import routesDefault from "routes/routes.json";
+import { RoutesContext } from "providers/RoutesProvider";
 
 const BackgroundImage = styled.div`
   width: 100%;
@@ -24,13 +27,16 @@ const BackgroundFilter = styled.div`
   align-items: center; */
 `;
 
-const MainLayout = ({ children, backgroundImg }) => (
-  <BackgroundImage backgroundImg={backgroundImg}>
-    <Header />
-    <BackgroundFilter>{children}</BackgroundFilter>
-    <Footer />
-  </BackgroundImage>
-);
+const MainLayout = ({ children, backgroundImg }) => {
+  const { routes } = useContext(RoutesContext);
+  return (
+    <BackgroundImage backgroundImg={backgroundImg}>
+      <Header routes={routes} />
+      <BackgroundFilter>{children}</BackgroundFilter>
+      <Footer routes={routes} />
+    </BackgroundImage>
+  );
+};
 
 MainLayout.propTypes = {
   children: PropTypes.oneOfType([PropTypes.element, PropTypes.node]).isRequired,

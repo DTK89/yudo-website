@@ -1,41 +1,37 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Switch, Route, Redirect, useRouteMatch } from "react-router-dom";
-import { api, endpoints } from "api";
 import SectionTemplate from "templates/SectionTemplate";
-import TechnologyDetailsTemplate from "templates/TechnologyDetailsTemplate";
-import { background } from "./data";
+// import TechnologyDetailsTemplate from "templates/TechnologyDetailsTemplate";
+import { RoutesContext } from "providers/RoutesProvider";
+import MarketDetailsTemplate from "templates/MarketDetailsTemplate";
+// import { background } from "./data";
 
 const Technology = () => {
   const { path } = useRouteMatch();
-  // const { slug } = useParams();
-  const [products, setProducts] = useState([]);
+  const { routes } = useContext(RoutesContext);
+  const [technologies, setTechnologies] = useState([]);
 
   useEffect(() => {
-    api
-      .get(endpoints.technologyList)
-      .then(({ data }) => {
-        setProducts(data);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-  }, []);
+    setTechnologies(routes.find((element) => element.url === path).subSection);
+  }, [routes, path]);
 
   return (
     <SectionTemplate
-      backgroundImg={background}
-      routes={products.technologyList}
+      // backgroundImg={background}
+      routes={technologies}
     >
       <Switch>
         <Route exact path={`${path}`}>
-          <Redirect to="/technology/iso" />
+          <Redirect to="/technologies/iso" />
         </Route>
 
         <Route exact path={`${path}/:slug`}>
-          <TechnologyDetailsTemplate />
+          <MarketDetailsTemplate sectionEndpoint={path} />
+          {/* <TechnologyDetailsTemplate /> */}
         </Route>
         <Route path={`${path}/:slug/:slug`}>
-          <TechnologyDetailsTemplate />
+          <MarketDetailsTemplate sectionEndpoint={path} />
+          {/* <TechnologyDetailsTemplate /> */}
         </Route>
       </Switch>
     </SectionTemplate>

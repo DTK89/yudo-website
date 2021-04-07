@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useRouteMatch } from "react-router-dom";
 import styled from "styled-components";
 
 const TitleWrapper = styled.div`
@@ -67,11 +67,12 @@ const FileCard = styled.div`
 
 const GridTemplate = ({ fileLists }) => {
   const { slug } = useParams();
+  const { path } = useRouteMatch();
   const [downloadList, setDownloadList] = useState([]);
 
   useEffect(() => {
     setDownloadList(fileLists.find((element) => element.slug === slug));
-  }, [slug]);
+  }, [slug, path]);
 
   console.log(downloadList);
   console.log(slug);

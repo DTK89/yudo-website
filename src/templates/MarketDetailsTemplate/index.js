@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { api, endpoints } from "api";
-import MarkdownParser from "components/MarkdownParser";
+import { api } from "api";
+// import MarkdownParser from "components/MarkdownParser";
 import styled from "styled-components";
 
 const TitleWrapper = styled.div`
@@ -74,13 +74,13 @@ const MarketDescription = styled.div`
   }
 `;
 
-const MarketDetailsTemplate = () => {
+const MarketDetailsTemplate = ({ sectionEndpoint }) => {
   const [marketDescription, setMarketDescription] = useState();
   const { slug } = useParams();
 
   useEffect(() => {
     api
-      .get(`${endpoints.market}${slug}`)
+      .get(`${sectionEndpoint}?slug=${slug}`)
       .then(({ data }) => {
         setMarketDescription(data[0]);
       })
@@ -98,10 +98,10 @@ const MarketDetailsTemplate = () => {
             <h2>{marketDescription.label}</h2>
           </TitleWrapper>
           <MarketDescription>
-            <MarkdownParser>{marketDescription.description}</MarkdownParser>
-            <img src={`${marketDescription.marketPicture[0].url}`} alt="" />
+            {/* <MarkdownParser>{marketDescription.description}</MarkdownParser> */}
+            {/* <img src={`${marketDescription.marketPicture[0].url}`} alt="" /> */}
           </MarketDescription>
-          {marketDescription.applications.map((application) => (
+          {/* {marketDescription.applications.map((application) => (
             <div key={application.id}>
               <TitleWrapper>
                 <span />
@@ -114,7 +114,7 @@ const MarketDetailsTemplate = () => {
                 )}
               </MarketDescription>
             </div>
-          ))}
+          ))} */}
         </>
       ) : (
         <h2>loading...</h2>

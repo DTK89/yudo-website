@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { api, endpoints } from "api";
-import MainLayoutTemplate from "templates/MainLayoutTemplate";
+// import MainLayoutTemplate from "templates/MainLayoutTemplate";
 import styled from "styled-components";
 import backgroundImg from "assets/backgrounds/HomePage.jpg";
 import { FaPhoneSquareAlt, FaGlobeAmericas } from "react-icons/fa";
@@ -222,9 +222,8 @@ const HomePage = () => {
         console.error(error);
       });
   }, []);
-
   return (
-    <MainLayoutTemplate>
+    <>
       <PageWrapper>
         <WelcomeSection>
           <WelcomeSectionContainer>
@@ -302,7 +301,7 @@ const HomePage = () => {
           </SectionContainer>
         </TechnologyOverviewSection>
       </PageWrapper>
-    </MainLayoutTemplate>
+    </>
   );
 };
 

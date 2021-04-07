@@ -1,44 +1,70 @@
 import React, { useState, useEffect, useRef } from "react";
 import PropTypes from "prop-types";
 import { IoIosArrowDown } from "react-icons/io";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
+
+const activeClassName = "active";
 
 const Container = styled.div`
   height: 100%;
   width: 100%;
 `;
 
-const Head = styled.button`
+const Head = styled.button.attrs({ activeClassName })`
   width: 100%;
   font-family: "Quicksand", sans-serif;
   font-size: 1.4rem;
   color: #555;
   text-align: center;
   text-transform: uppercase;
+  outline-style: none;
   font-weight: 700;
-  padding: 1.1rem 1.5rem;
-  margin-bottom: 2rem;
-  background: hsla(0, 0%, 100%, 0.8);
-  border: 1px solid white;
+  padding: 1rem 1rem;
+  background: var(--clr-secondary);
+  border: none;
   display: block;
   transition: all 0.5s ease 0s;
 
   display: flex;
   justify-content: space-between;
+  background: ${({ isOpen }) =>
+    isOpen ? "var(--clr-trinary)" : "var(--clr-secondary)"};
 
   &:hover {
-    background: hsla(0, 0%, 100%, 0.5);
+    background: var(--clr-trinary);
   }
 
-  &:active {
-    background: hsla(0, 0%, 100%, 0.5);
+  &.${activeClassName} {
+    background: var(--clr-primary);
     box-shadow: inset 0 5px 0 0 #fff;
   }
+
+  ${({ sidebar }) =>
+    sidebar &&
+    css`
+      text-transform: uppercase;
+      font-weight: 700;
+      padding: 1.1rem 1.5rem;
+      margin-bottom: 2rem;
+      background: hsla(0, 0%, 100%, 0.8);
+      border: 1px solid white;
+
+      &:hover {
+        background: hsla(0, 0%, 100%, 0.5);
+      }
+
+      &.${activeClassName} {
+        background: hsla(0, 0%, 100%, 0.5);
+        box-shadow: inset 0 5px 0 0 #fff;
+      }
+    `}
 `;
 
 const Icon = styled.span`
   font-size: 1.4rem;
   transition: transform ease 500ms;
+  transform: ${({ isOpen }) => (isOpen ? "rotate(-180deg)" : "rotate(0deg)")};
+
   @media screen and (min-width: 768px) {
     font-size: 2rem;
   }
@@ -50,14 +76,22 @@ const Icon = styled.span`
 const Body = styled.div`
   overflow: hidden;
   transition: height ease 500ms;
+  background-color: var(--clr-trinary);
+
+  ${({ sidebar }) =>
+    sidebar &&
+    css`
+      background-color: transparent;
+    `}
 `;
 
-const SidebarDropdown = ({
+const SubMenuDropdown = ({
   index,
   labelTitle,
   children,
   active,
   setActive,
+  sidebar,
 }) => {
   // If active and set active is not delivered this is checkoption for opening and closing
   const [localActive, setLocalActive] = useState(false);
@@ -65,20 +99,14 @@ const SidebarDropdown = ({
   const isOpen = active === index || localActive;
   // refs to Accordion main elements
   const dropdownBodyRef = useRef(null);
-  const buttonArrowRef1 = useRef(null);
-  const buttonArrowRef2 = useRef(null);
   const dropdownContentRef = useRef(null);
 
   useEffect(() => {
     const contentHeight = dropdownContentRef.current.getBoundingClientRect()
       .height;
     if (isOpen) {
-      buttonArrowRef1.current.style.transform = `rotate(-180deg)`;
-      buttonArrowRef2.current.style.transform = `rotate(-180deg)`;
       dropdownBodyRef.current.style.height = `${contentHeight + 20}px`;
     } else {
-      buttonArrowRef1.current.style.transform = `rotate(0deg)`;
-      buttonArrowRef2.current.style.transform = `rotate(0deg)`;
       dropdownBodyRef.current.style.height = `0px`;
     }
   }, [isOpen]);
@@ -103,12 +131,12 @@ const SidebarDropdown = ({
 
   return (
     <Container>
-      <Head onClick={accordionClickHandler}>
-        <Icon ref={buttonArrowRef1}>
+      <Head isOpen={isOpen} onClick={accordionClickHandler} sidebar={sidebar}>
+        <Icon isOpen={isOpen}>
           <IoIosArrowDown />
         </Icon>
         {labelTitle}
-        <Icon ref={buttonArrowRef2}>
+        <Icon isOpen={isOpen}>
           <IoIosArrowDown />
         </Icon>
       </Head>
@@ -119,16 +147,18 @@ const SidebarDropdown = ({
   );
 };
 
-SidebarDropdown.propTypes = {
+SubMenuDropdown.propTypes = {
   labelTitle: PropTypes.string.isRequired,
   index: PropTypes.number.isRequired,
   active: PropTypes.number,
   setActive: PropTypes.func,
+  sidebar: PropTypes.bool,
 };
 
-SidebarDropdown.defaultProps = {
+SubMenuDropdown.defaultProps = {
   active: null,
   setActive: null,
+  sidebar: false,
 };
 
-export default SidebarDropdown;
+export default SubMenuDropdown;

@@ -1,229 +1,80 @@
 [
 {
     "id": 1,
+    "label": "Strona Główna",
     "url": "/",
-    "name": "Strona Główna",
-    "backgroundImg" : "",
-    "section" : []
+    "background" : "",
+    "subSection" : []
 },
 {
     "id": 2,
+    "label": "O nas",
     "url": "/about",
-    "name": "O nas",
-    "backgroundImg" : "",
-    "section" : [
+    "background" : "",
+    "subSection" : [
         {
             "id": 1,
-            "url": "/about/yudo-worldwide",
-            "name": "O YUDO"
+            "label": "O YUDO",
+            "slug": "yudo-worldwide"
         },
         {
             "id": 2,
-            "url": "/about/yudo-poland",
-            "name": "YUDO w Polsce"
-        },
-        {
-            "id": 3,
-            "url": "/about/news",
-            "name": "Aktualności"
+            "label": "YUDO w Polsce",
+            "slug": "yudo-poland"
         }
     ]
 },
 {
     "id": 3,
+    "label": "Produkty",
     "url": "/products",
-    "name": "Produkty",
-    "backgroundImg" : "",
-    "section" : [
-        {
-            "id": 1,
-            "url": "/",
-            "name": "Hot Half System"
-        },
-        {
-            "id": 2,
-            "url": "/",
-            "name": "Manifold System"
-        },
-        {
-            "id": 3,
-            "url": "/",
-            "name": "Hot Runner"
-        },
-        {
-            "id": 4,
-            "url": "/",
-            "name": "Temperature Controller"
-        },
-        {
-            "id": 5,
-            "url": "/",
-            "name": "Sequence Controller"
-        }
-    ]
+    "background" : "",
+    "subSection" : []
 },
 {
     "id": 4,
+    "label": "Rynki",
     "url": "/markets",
-    "name": "Rynek",
-    "backgroundImg" : "",
-    "section" : [
-        {
-            "id": 1,
-            "url": "/markets/automotive",
-            "name": "Przemysł samochodowy"
-        },
-        {
-            "id": 2,
-            "url": "/markets/tv",
-            "name": "TV"
-        },
-        {
-            "id": 3,
-            "url": "/markets/laptop",
-            "name": "Laptopy"
-        },
-        {
-            "id": 4,
-            "url": "/markets/mobile",
-            "name": "Telefony"
-        },
-        {
-            "id": 5,
-            "url": "/markets/office",
-            "name": "Wyposażenie biura"
-        },
-        {
-            "id": 6,
-            "url": "/markets/home-app",
-            "name": "Wyposażenie domu"
-        },
-        {
-            "id": 7,
-            "url": "/markets/packaging",
-            "name": "Opakowania"
-        },
-        {
-            "id": 8,
-            "url": "/markets/medical",
-            "name": "Medycyna"
-        },
-        {
-            "id": 9,
-            "url": "/markets/industrial",
-            "name": "Przemysł ciężki"
-        }
-    ]
+    "background" : "",
+    "subSection" : []
     
 },
 {
     "id": 5,
-    "url": "/technology",
-    "name": "Technologia",
-    "backgroundImg" : "",
-    "section" : [
-        {
-            "id": 1,
-            "url": "/",
-            "name": "Zmiana koloru"
-        },
-        {
-            "id": 2,
-            "url": "/",
-            "name": "ISO"
-        },
-        {
-            "id": 3,
-            "url": "/",
-            "name": "LSR"
-        },
-        {
-            "id": 4,
-            "url": "/",
-            "name": "Sterowanie sekwencyjne"
-        },
-        {
-            "id": 5,
-            "url": "/",
-            "name": "T-System"
-        }
-    ]
+    "label": "Technologia",
+    "url": "/technologies",
+    "background" : "",
+    "subSection" : []
 },
 {
     "id": 6,
+    "label": "Sucessful Cases",
     "url": "/sucessful-case",
-    "name": "Sucessful Casses",
-    "backgroundImg" : "",
-    "section" : [
-        {
-            "id": 1,
-            "url": "/sucessful-case/automotive",
-            "name": "Przemysł samochodowy"
-        },
-        {
-            "id": 2,
-            "url": "/sucessful-case/tv",
-            "name": "TV"
-        },
-        {
-            "id": 3,
-            "url": "/sucessful-case/laptop",
-            "name": "Laptopy"
-        },
-        {
-            "id": 4,
-            "url": "/sucessful-case/mobile",
-            "name": "Telefony"
-        },
-        {
-            "id": 5,
-            "url": "/sucessful-case/home-app",
-            "name": "Wyposażenie biura"
-        },
-        {
-            "id": 6,
-            "url": "/sucessful-case/office",
-            "name": "Wyposażenie domu"
-        },
-        {
-            "id": 7,
-            "url": "/sucessful-case/packeging",
-            "name": "Opakowania"
-        },
-        {
-            "id": 8,
-            "url": "/sucessful-case/medical",
-            "name": "Medycyna"
-        },
-        {
-            "id": 9,
-            "url": "/sucessful-case/industrial",
-            "name": "Przemysł ciężki"
-        }
-    ]
+    "background" : "",
+    "subSection" : []
 },
 {
     "id": 7,
+    "label": "Pobierz",
     "url": "/download",
-    "name": "Pobierz",
-    "backgroundImg" : "",
-    "section" : []
+    "background" : "",
+    "subSection" : []
 },
 {
     "id": 8,
+    "label": "Kontakt",
     "url": "/contact",
-    "name": "Kontakt",
-    "backgroundImg" : "",
-    "section" : [
+    "background" : "",
+    "subSection" : [
         {
             "id": 1,
-            "url": "/contact/poland",
-            "name": "YUDO w Polsce"
+            "label": "YUDO Polska",
+            "slug": "poland"
         },
         {
             "id": 2,
-            "url": "/contact/worldwide",
-            "name": "YUDO na Świecie"
+            "label": "Oddziały YUDO",
+            "slug": "worldwide"
         }
     ]
 }

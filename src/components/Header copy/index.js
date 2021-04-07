@@ -4,6 +4,7 @@ import styled from "styled-components";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { GrLanguage } from "react-icons/gr";
 import LogoIcon from "assets/logo/logo-red.png";
+import routes from "routes/routes.json";
 import MobileDropdownMenu from "components/MobileDropdownMenu";
 
 const Wrapper = styled.div`
@@ -122,17 +123,10 @@ const StyledLink = styled(NavLink)`
   }
 `;
 
-const Header = ({ routes }) => {
-  const [headerRoutes, setHeaderRoutes] = useState(routes);
+const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
   const linksContainerRef = useRef(null);
   const linksRef = useRef(null);
-
-  useEffect(() => {
-    if (routes.length !== 0) {
-      setHeaderRoutes(routes);
-    }
-  }, [routes]);
 
   const handleOpen = () => {
     if (window.innerWidth > 800) {
@@ -141,6 +135,15 @@ const Header = ({ routes }) => {
       setIsOpen(!isOpen);
     }
   };
+
+  useEffect(() => {
+    const linksHeight = linksRef.current.getBoundingClientRect().height;
+    if (isOpen) {
+      linksContainerRef.current.style.height = `${linksHeight}px`;
+    } else {
+      linksContainerRef.current.style.height = "0px";
+    }
+  }, [isOpen]);
 
   return (
     <>
@@ -159,10 +162,10 @@ const Header = ({ routes }) => {
           </HeadContainer>
           <MenuContainer>
             {/* <ul> */}
-            {headerRoutes.map((route) => (
+            {routes.map((route) => (
               <li key={route.id}>
                 <StyledLink activeClassName="active" to={route.url}>
-                  {route.label}
+                  {route.name}
                 </StyledLink>
               </li>
             ))}
@@ -170,7 +173,7 @@ const Header = ({ routes }) => {
           </MenuContainer>
         </NavBarContainer>
         <MobileDropdownMenu
-          routeLinks={headerRoutes}
+          routeLinks={routes}
           toggleDropdown={handleOpen}
           isOpen={isOpen}
           linksRef={linksRef}

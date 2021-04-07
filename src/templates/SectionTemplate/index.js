@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
-import MainLayoutTemplate from "templates/MainLayoutTemplate";
+// import MainLayoutTemplate from "templates/MainLayoutTemplate";
 import Sidebar from "components/Sidebar";
 
 const PageWrapper = styled.div`
@@ -29,18 +29,18 @@ const SectionContent = styled.div`
   }
 `;
 
-const SectionTemplate = ({ children, backgroundImg, routes }) => (
-  <MainLayoutTemplate backgroundImg={backgroundImg}>
-    <PageWrapper>
-      <Sidebar routes={routes} />
-      <SectionContent>{children}</SectionContent>
-    </PageWrapper>
-  </MainLayoutTemplate>
+const SectionTemplate = ({ children, routes }) => (
+  // <MainLayoutTemplate backgroundImg={backgroundImg}>
+  <PageWrapper>
+    <Sidebar routes={routes} />
+    <SectionContent>{children}</SectionContent>
+  </PageWrapper>
+  // </MainLayoutTemplate>
 );
 
 SectionTemplate.propTypes = {
   children: PropTypes.oneOfType([PropTypes.element, PropTypes.node]).isRequired,
-  backgroundImg: PropTypes.string.isRequired,
+  // backgroundImg: PropTypes.string.isRequired,
 };
 
 export default SectionTemplate;

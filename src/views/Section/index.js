@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Switch, Route, Redirect, useRouteMatch } from "react-router-dom";
-import { api, endpoints } from "api";
 import SectionTemplate from "templates/SectionTemplate";
 import MarketDetailsTemplate from "templates/MarketDetailsTemplate";
+import { RoutesContext } from "providers/RoutesProvider";
 // import styled from "styled-components";
-import { background } from "./data";
+// import { background } from "./data";
 
 // const GridWrapper = styled.div`
 //   padding: 10px;
@@ -49,36 +49,30 @@ import { background } from "./data";
 //   }
 // `;
 
-const Markets = () => {
+const SectionWiew = () => {
   const { path } = useRouteMatch();
+  const { routes } = useContext(RoutesContext);
   const [markets, setMarkets] = useState([]);
 
   useEffect(() => {
-    api
-      .get(endpoints.marketList)
-      .then(({ data }) => {
-        setMarkets(data.marketList);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-  }, []);
+    setMarkets(routes.find((element) => element.url === path).subSection);
+  }, [routes, path]);
 
   return (
-    <SectionTemplate backgroundImg={background} routes={markets}>
+    <SectionTemplate routes={markets}>
       <Switch>
         <Route exact path={`${path}`}>
-          <Redirect to="/markets/automotive" />
+          <Redirect to={`${path}/automotive`} />
         </Route>
         <Route exact path={`${path}/:slug`}>
-          <MarketDetailsTemplate />
+          <MarketDetailsTemplate sectionEndpoint={path} />
         </Route>
         <Route path={`${path}/:slug/:slug`}>
-          <MarketDetailsTemplate />
+          <MarketDetailsTemplate sectionEndpoint={path} />
         </Route>
       </Switch>
     </SectionTemplate>
   );
 };
 
-export default Markets;
+export default SectionWiew;

@@ -1,26 +1,33 @@
-import React from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { Switch, Route, Redirect, useRouteMatch } from "react-router-dom";
 // import { api, endpoints } from "api";
 import SectionTemplate from "templates/SectionTemplate";
 import ContactTemplate from "templates/ContactTemplate";
 import WorldwideContactTemplate from "templates/ContactWorldwideTemplate";
+import { RoutesContext } from "providers/RoutesProvider";
 // import styled from "styled-components";
-import { sections, background } from "./data";
+// import { sections, background } from "./data";
 
 const Contact = () => {
   const { path } = useRouteMatch();
+  const { routes } = useContext(RoutesContext);
+  const [contacts, setContacts] = useState([]);
+
+  useEffect(() => {
+    setContacts(routes.find((element) => element.url === path).subSection);
+  }, [routes, path]);
 
   return (
-    <SectionTemplate backgroundImg={background} routes={sections}>
+    <SectionTemplate routes={contacts}>
       <Switch>
         <Route exact path={`${path}`}>
-          <Redirect to={`${path}/${sections[0].slug}`} />
+          <Redirect to={`${path}/poland`} />
         </Route>
-        <Route exact path={`${path}/${sections[0].slug}`}>
-          <ContactTemplate title={sections[0].label} />
+        <Route exact path={`${path}/poland`}>
+          <ContactTemplate />
         </Route>
-        <Route path={`${path}/${sections[1].slug}`}>
-          <WorldwideContactTemplate title={sections[1].label} />
+        <Route path={`${path}/worldwide`}>
+          <WorldwideContactTemplate />
         </Route>
       </Switch>
     </SectionTemplate>

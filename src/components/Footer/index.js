@@ -1,8 +1,9 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 import LogoIcon from "assets/logo/logo-white.png";
 import LogoGroupIcon from "assets/logo/logo-group-white.png";
-import Routes from "routes/routes.json";
+// import routesDefault from "routes/routes.json";
 
 const Wrapper = styled.div`
   height: 30rem;
@@ -47,7 +48,7 @@ const SecPartListWrapper = styled.ul`
   }
 `;
 
-const StyledLink = styled.a`
+const StyledLink = styled(Link)`
   padding: 0 1.5rem;
   color: var(--clr-white);
 `;
@@ -66,7 +67,7 @@ const SyledSubList = styled.ul`
   }
 `;
 
-const StyledSubLink = styled.a`
+const StyledSubLink = styled(Link)`
   font-size: 1.3rem;
   font-weight: 300;
   padding: 0 1.5rem;
@@ -96,82 +97,89 @@ const StyledLogo = styled.a`
   }
 `;
 
-const Footer = () => (
+const Footer = ({ routes }) => (
   <Wrapper>
     <FooterContainer>
       <LinksContainer>
         <ul>
           <li>
-            <StyledLink href={Routes[0].url}>{Routes[0].name}</StyledLink>
+            <StyledLink to={routes[0].url}>{routes[0].label}</StyledLink>
           </li>
           <li>
-            <StyledLink href={Routes[5].url}>{Routes[5].name}</StyledLink>
+            <StyledLink to={routes[5].url}>{routes[5].label}</StyledLink>
           </li>
           <li>
-            <StyledLink href={Routes[6].url}>{Routes[6].name}</StyledLink>
+            <StyledLink to={routes[6].url}>{routes[6].label}</StyledLink>
           </li>
           <li>
-            <StyledLink href={Routes[1].url}>{Routes[1].name}</StyledLink>
+            <StyledLink to={routes[1].url}>{routes[1].label}</StyledLink>
             <SyledSubList>
-              {Routes[1].section.map((section) => (
-                <li key={section.id}>
-                  <StyledSubLink href={section.url}>
-                    {section.name}
-                  </StyledSubLink>
-                </li>
-              ))}
+              {routes[1].subSection.length !== 0
+                ? routes[1].subSection.map((section) => (
+                    <li key={section.id}>
+                      <StyledSubLink to={`${routes[1].url}/${section.slug}`}>
+                        {section.label}
+                      </StyledSubLink>
+                    </li>
+                  ))
+                : null}
             </SyledSubList>
           </li>
         </ul>
         <SecPartListWrapper>
           <li>
-            <StyledLink href={Routes[2].url}>{Routes[2].name}</StyledLink>
+            <StyledLink to={routes[2].url}>{routes[2].label}</StyledLink>
             <SyledSubList>
-              {Routes[2].section.map((section) => (
-                <li key={section.id}>
-                  <StyledSubLink href={section.url}>
-                    {section.name}
-                  </StyledSubLink>
-                </li>
-              ))}
+              {routes[2].subSection.length !== 0 &&
+                routes[2].subSection.map((section) => (
+                  <li key={section.id}>
+                    <StyledSubLink to={`${routes[2].url}/${section.slug}`}>
+                      {section.label}
+                    </StyledSubLink>
+                  </li>
+                ))}
             </SyledSubList>
           </li>
           <li>
-            <StyledLink href={Routes[3].url}>{Routes[3].name}</StyledLink>
+            <StyledLink to={routes[3].url}>{routes[3].label}</StyledLink>
             <SyledSubList>
-              {Routes[3].section.map((section) => (
-                <li key={section.id}>
-                  <StyledSubLink href={section.url}>
-                    {section.name}
-                  </StyledSubLink>
-                </li>
-              ))}
+              {routes[3].subSection.length !== 0 &&
+                routes[3].subSection.map((section) => (
+                  <li key={section.id}>
+                    <StyledSubLink to={`${routes[3].url}/${section.slug}`}>
+                      {section.label}
+                    </StyledSubLink>
+                  </li>
+                ))}
             </SyledSubList>
           </li>
           <li>
-            <StyledLink href={Routes[4].url}>{Routes[4].name}</StyledLink>
+            <StyledLink to={routes[4].url}>{routes[4].label}</StyledLink>
             <SyledSubList>
-              {Routes[4].section.map((section) => (
-                <li key={section.id}>
-                  <StyledSubLink href={section.url}>
-                    {section.name}
-                  </StyledSubLink>
-                </li>
-              ))}
+              {routes[4].subSection.length !== 0 &&
+                routes[4].subSection.map((section) => (
+                  <li key={section.id}>
+                    <StyledSubLink to={`${routes[4].url}/${section.slug}`}>
+                      {section.label}
+                    </StyledSubLink>
+                  </li>
+                ))}
             </SyledSubList>
           </li>
-          <li>
-            <StyledLink href={Routes[5].url}>{Routes[5].name}</StyledLink>
-            <SyledSubList>
-              {Routes[5].section.map((section) => (
-                <li key={section.id}>
-                  <StyledSubLink href={section.url}>
-                    {section.name}
-                  </StyledSubLink>
-                </li>
-              ))}
-            </SyledSubList>
-          </li>
+          {/* <li>
+              <StyledLink to={routes[5].url}>
+                {routes[5].label}
+              </StyledLink>
+              <SyledSubList>
+                {routes[5].subSection.map((section) => (
+                  <li key={section.id}>
+                    <StyledSubLink to={section.url}>
+                      {section.label}
+                    </StyledSubLink>
+                  </li>
+                ))}
+              </SyledSubList>
+            </li> */}
         </SecPartListWrapper>
       </LinksContainer>
       <LogoColumnContainer>

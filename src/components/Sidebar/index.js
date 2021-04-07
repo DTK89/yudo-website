@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 // import { IoIosArrowDown } from "react-icons/io";
 import { NavLink, useRouteMatch } from "react-router-dom";
-import SidebarDropdownList from "components/SidebarDropdown";
+import SidebarDropdownList from "components/SubMenuDropdown";
 import styled from "styled-components";
 
 const Placeholder = styled.span`
@@ -69,6 +69,7 @@ const Sidebar = ({ routes }) => {
                   index={index}
                   active={activeDropdown}
                   setActive={setDropdown}
+                  sidebar
                 >
                   <ul>
                     {sectionLink.product.map((subSectionLink) => (

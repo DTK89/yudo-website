@@ -1,30 +1,46 @@
 import React from "react";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
-import { routes } from "routes";
+import { locations } from "routes";
 import GlobalTemplate from "templates/GlobalStyleTemplate";
 import HomePage from "templates/HomePageTemplate";
 import About from "views/About";
 import Products from "views/Products";
-import Markets from "views/Markets";
+// import Markets from "views/Markets";
+import SectionView from "views/Section";
 import Technology from "views/Technology";
 import SucessfulCases from "views/SucessfulCases";
 import Downloads from "views/Downloads";
 import Contact from "views/Contact";
+import MainLayoutTemplate from "templates/MainLayoutTemplate";
+import RoutesProvider from "providers/RoutesProvider";
 
 function Root() {
+  // const { path } = useRouteMatch();
   return (
     <GlobalTemplate>
       <BrowserRouter>
-        <Switch>
-          <Route exact path={routes.home} component={HomePage} />
-          <Route path={routes.aboutUs} component={About} />
-          <Route path={routes.products} component={Products} />
-          <Route path={routes.markets} component={Markets} />
-          <Route path={routes.technologies} component={Technology} />
-          <Route path={routes.sucessfulCases} component={SucessfulCases} />
-          <Route path={routes.download} component={Downloads} />
-          <Route path={routes.contact} component={Contact} />
-        </Switch>
+        <RoutesProvider>
+          <MainLayoutTemplate>
+            <Switch>
+              <Route exact path={locations.home} component={HomePage} />
+              <Route path={locations.aboutUs} component={About} />
+              <Route path={locations.products} component={Products} />
+              <Route path={locations.markets}>
+                <SectionView />
+              </Route>
+              {/* <Route path={locations.markets} component={Markets} /> */}
+              <Route path={locations.technologies}>
+                <Technology />
+              </Route>
+              <Route
+                path={locations.sucessfulCases}
+                component={SucessfulCases}
+              />
+              <Route path={locations.download} component={Downloads} />
+              <Route path={locations.contact} component={Contact} />
+            </Switch>
+          </MainLayoutTemplate>
+        </RoutesProvider>
       </BrowserRouter>
     </GlobalTemplate>
   );

@@ -1,12 +1,12 @@
-export const routes = {
+export const locations = {
   home: "/",
   aboutUs: "/about",
   products: "/products",
   product: "/products/:slug",
   markets: "/markets",
   market: "/markets/:slug",
-  technologies: "/technology",
-  technology: "/technology/:slug",
+  technologies: "/technologies",
+  // technology: "/technologies/:slug",
   sucessfulCases: "/sucessful-case",
   sucessfulCase: "/sucessful-case/:id",
   download: "/download",
