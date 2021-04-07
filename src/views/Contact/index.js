@@ -1,12 +1,9 @@
 import React, { useState, useContext, useEffect } from "react";
 import { Switch, Route, Redirect, useRouteMatch } from "react-router-dom";
-// import { api, endpoints } from "api";
 import SectionTemplate from "templates/SectionTemplate";
 import ContactTemplate from "templates/ContactTemplate";
 import WorldwideContactTemplate from "templates/ContactWorldwideTemplate";
 import { RoutesContext } from "providers/RoutesProvider";
-// import styled from "styled-components";
-// import { sections, background } from "./data";
 
 const Contact = () => {
   const { path } = useRouteMatch();

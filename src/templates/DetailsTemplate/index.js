@@ -1,11 +1,8 @@
 import React, { useState, useEffect } from "react";
-// import PropTypes from "prop-types";
 import { useParams } from "react-router-dom";
-import { api, endpoints } from "api";
+import { api } from "api";
 import MarkdownParser from "components/MarkdownParser";
 import styled from "styled-components";
-
-const ContentWrapper = styled.div``;
 
 const TitleWrapper = styled.div`
   display: flex;
@@ -26,14 +23,58 @@ const TitleWrapper = styled.div`
     line-height: 1;
   }
 
-  @media screen and (max-width: 425px) {
-    span {
-      display: none;
+  h4 {
+    font-size: 19.5px;
+    font-weight: 400;
+    margin: 0 0 2px 0;
+
+    color: #777;
+  }
+`;
+
+const RichTextWithPhotoRight = styled.div`
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-gap: 10px;
+  justify-content: center;
+  align-items: center;
+
+  img {
+    width: 100%;
+    max-height: 250px;
+    object-fit: contain;
+  }
+
+  p {
+    margin-left: 25px;
+    text-align: justify;
+  }
+
+  ul {
+    margin-left: 50px;
+  }
+
+  @media screen and (min-width: 425px) {
+    img {
+      justify-self: center;
+      width: 70%;
+    }
+  }
+
+  @media screen and (min-width: 992px) {
+    grid-template-columns: 1.5fr 1fr;
+    grid-template-rows: minmax(200px, auto);
+    grid-gap: 20px;
+
+    img {
+      justify-self: center;
+      width: 100%;
+      min-width: 300px;
     }
   }
 `;
 
-const ProductDescription = styled.div`
+const SingleRichText = styled.div`
   img {
     width: 100%;
     /* max-height: 250px; */
@@ -74,45 +115,61 @@ const ProductDescription = styled.div`
   }
 `;
 
-const DetailsTemplate = () => {
-  const [pageContent, setPageContent] = useState([]);
+const MarketDetailsTemplate = ({ sectionEndpoint }) => {
+  const [description, setDescription] = useState();
   const { slug } = useParams();
 
   useEffect(() => {
     api
-      .get(`${endpoints.products}${slug}`)
+      .get(`${sectionEndpoint}?slug=${slug}`)
       .then(({ data }) => {
-        setPageContent(data);
+        setDescription(data[0]);
       })
       .catch((error) => {
         console.error(error);
       });
   }, [slug]);
 
+  console.log(description);
   return (
-    <ContentWrapper>
-      <TitleWrapper>
-        <span />
-        {pageContent.length ? <h2>{pageContent[0].label}</h2> : null}
-      </TitleWrapper>
-      <ProductDescription>
-        {pageContent[0]?.paragraph?.length ? (
-          <>
-            {pageContent[0].paragraph.map((p) => (
-              <MarkdownParser key={p.id}>{p.description}</MarkdownParser>
-            ))}
-          </>
-        ) : null}
-      </ProductDescription>
-    </ContentWrapper>
+    <>
+      {description ? (
+        <>
+          <TitleWrapper>
+            <span />
+            <h2>{description.label}</h2>
+          </TitleWrapper>
+          {description?.paragraph?.length !== 0 ? (
+            description.paragraph.map((paragraphSection) => (
+              <>
+                {paragraphSection?.descriptionPicture ? (
+                  <RichTextWithPhotoRight>
+                    <MarkdownParser>
+                      {paragraphSection.description}
+                    </MarkdownParser>
+                    <img
+                      src={`${paragraphSection.descriptionPicture.url}`}
+                      alt=""
+                    />
+                  </RichTextWithPhotoRight>
+                ) : (
+                  <SingleRichText>
+                    <MarkdownParser>
+                      {paragraphSection.description}
+                    </MarkdownParser>
+                  </SingleRichText>
+                )}
+              </>
+            ))
+          ) : (
+            <h1>Loading...</h1>
+          )}
+        </>
+      ) : (
+        <h2>Loading...</h2>
+      )}
+    </>
   );
 };
 
-// ProductDetailsTemplate.propTypes = {
-//   product: PropTypes.shape({
-//     label: PropTypes.string,
-//     description: PropTypes.string,
-//   }).isRequired,
-// };
-
-export default DetailsTemplate;
+export default MarketDetailsTemplate;
