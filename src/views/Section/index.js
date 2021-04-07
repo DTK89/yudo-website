@@ -49,7 +49,7 @@ import { RoutesContext } from "providers/RoutesProvider";
 //   }
 // `;
 
-const SectionWiew = () => {
+const SectionView = () => {
   const { path } = useRouteMatch();
   const { routes } = useContext(RoutesContext);
   const [markets, setMarkets] = useState([]);
@@ -62,7 +62,11 @@ const SectionWiew = () => {
     <SectionTemplate routes={markets}>
       <Switch>
         <Route exact path={`${path}`}>
-          <Redirect to={`${path}/automotive`} />
+          {path === `/products` && (
+            <Redirect to={`${path}/hot-runner-system/tina-am`} />
+          )}
+          {path === `/markets` && <Redirect to={`${path}/automotive`} />}
+          {path === `/technologies` && <Redirect to={`${path}/iso`} />}
         </Route>
         <Route exact path={`${path}/:slug`}>
           <MarketDetailsTemplate sectionEndpoint={path} />
@@ -75,4 +79,4 @@ const SectionWiew = () => {
   );
 };
 
-export default SectionWiew;
+export default SectionView;
