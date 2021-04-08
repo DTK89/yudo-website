@@ -130,7 +130,6 @@ const MarketDetailsTemplate = ({ sectionEndpoint }) => {
       });
   }, [slug]);
 
-  console.log(description);
   return (
     <>
       {description ? (
@@ -141,7 +140,7 @@ const MarketDetailsTemplate = ({ sectionEndpoint }) => {
           </TitleWrapper>
           {description?.paragraph?.length !== 0 ? (
             description.paragraph.map((paragraphSection) => (
-              <>
+              <div key={paragraphSection.id}>
                 {paragraphSection?.descriptionPicture ? (
                   <RichTextWithPhotoRight>
                     <MarkdownParser>
@@ -159,7 +158,7 @@ const MarketDetailsTemplate = ({ sectionEndpoint }) => {
                     </MarkdownParser>
                   </SingleRichText>
                 )}
-              </>
+              </div>
             ))
           ) : (
             <h1>Loading...</h1>

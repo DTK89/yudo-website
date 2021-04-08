@@ -9,11 +9,12 @@ const Background = styled.div`
   right: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.8);
+  background: rgba(0, 0, 0, 0.5);
   position: fixed;
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 998;
 `;
 
 const ModalWrapper = styled.div`
@@ -26,7 +27,7 @@ const ModalWrapper = styled.div`
   display: grid;
   grid-template-columns: 1fr;
   position: relative;
-  z-index: 10;
+  z-index: 999;
   border-radius: 10px;
 
   @media screen and (min-width: 425px) {

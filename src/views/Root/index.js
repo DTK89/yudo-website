@@ -2,6 +2,7 @@ import React from "react";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import { locations } from "routes";
 import GlobalTemplate from "templates/GlobalStyleTemplate";
+import RoutesProvider from "providers/RoutesProvider";
 import HomePage from "templates/HomePageTemplate";
 import About from "views/About";
 import SectionView from "views/Section";
@@ -9,7 +10,6 @@ import SucessfulCases from "views/SucessfulCases";
 import Downloads from "views/Downloads";
 import Contact from "views/Contact";
 import MainLayoutTemplate from "templates/MainLayoutTemplate";
-import RoutesProvider from "providers/RoutesProvider";
 
 function Root() {
   // const { path } = useRouteMatch();

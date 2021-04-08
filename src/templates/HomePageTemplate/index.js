@@ -10,7 +10,7 @@ import Slider from "components/Slider";
 // import Slide from "components/Slide";
 import slides from "components/Slider/data";
 import Card from "components/Card";
-import { productCards, casesCards, technologyCards } from "./data";
+import { productCards, technologyCards } from "./data";
 
 const PageWrapper = styled.div`
   width: 100%;
@@ -210,11 +210,11 @@ const BoxWrapper = styled.div`
 const HomePage = () => {
   const [sucessfulCases, setSucessfulCases] = useState([]);
 
-  console.warn(sucessfulCases);
+  console.log(sucessfulCases);
 
   useEffect(() => {
     api
-      .get(endpoints.sucessfulCases)
+      .get(`${endpoints.sucessfulCases}`)
       .then(({ data }) => {
         setSucessfulCases(data);
       })
@@ -222,13 +222,14 @@ const HomePage = () => {
         console.error(error);
       });
   }, []);
+
   return (
     <>
       <PageWrapper>
         <WelcomeSection>
           <WelcomeSectionContainer>
             <StyledSliderWrapper>
-              <Slider secondary slides={casesCards} />
+              <Slider secondary slides={sucessfulCases} />
             </StyledSliderWrapper>
             <SliderWrapper>
               <Slider slides={slides} />

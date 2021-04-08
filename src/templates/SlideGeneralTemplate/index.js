@@ -20,9 +20,9 @@ const SlideContainer = styled.div`
     overflow: hidden;
     @media screen and (min-width: 768px) {
       /* max-height: 300px; */
-      max-height: 150px;
+      max-height: 300px;
       /* max-width: 300px; */
-      max-width: 150px;
+      max-width: 250px;
       /* min-width: 220px; */
       min-width: 150px;
     }
@@ -45,13 +45,23 @@ const Content = styled.div`
   align-items: center;
 
   h2 {
+    font-size: 25px;
     color: var(--clr-black);
-    margin: 10px auto;
+    margin: 3px auto;
+    text-align: center;
+  }
+
+  h3 {
+    /* font-size: 25px; */
+    color: var(--clr-black);
+    margin: 5px auto 10px;
+    text-align: center;
   }
 
   p {
     color: var(--clr-black);
     font-size: 1.4rem;
+    text-align: center;
     /* padding: 20px 0 20px 0; */
   }
 
@@ -86,6 +96,7 @@ const Slide = ({ content }) => {
   const {
     image,
     title,
+    title2,
     description,
     description2,
     description3,
@@ -95,7 +106,10 @@ const Slide = ({ content }) => {
     <Wrapper>
       <SlideContainer>
         <Content>
-          <h2>{title}</h2>
+          <div>
+            <h2>{title}</h2>
+            <h3>{title2}</h3>
+          </div>
           <p>{description}</p>
           {description2 && <p>{description2}</p>}
           {description3 && <p>{description3}</p>}

@@ -2,7 +2,7 @@ import React, { useRef, useEffect, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import styled from "styled-components";
 import { GiHamburgerMenu } from "react-icons/gi";
-import { GrLanguage } from "react-icons/gr";
+// import { GrLanguage } from "react-icons/gr";
 import LogoIcon from "assets/logo/logo-red.png";
 import MobileDropdownMenu from "components/MobileDropdownMenu";
 
@@ -61,7 +61,7 @@ const LanguageButton = styled.button`
   display: none;
 
   @media screen and (min-width: 800px) {
-    color: var(--clr-trinary);
+    color: tranparent;
     font-size: 2rem;
     margin: 1rem 1.5rem 0.8rem 0;
     background: transparent;
@@ -70,7 +70,7 @@ const LanguageButton = styled.button`
     display: flex;
     align-items: center;
     outline: none;
-    cursor: pointer;
+    /* cursor: pointer; */
   }
 `;
 
@@ -112,6 +112,7 @@ const StyledLink = styled(NavLink)`
   padding: 1.5rem;
   background: transparent;
   display: block;
+  color: var(--clr-black);
 
   &:hover {
     color: var(--clr-primary);
@@ -150,9 +151,7 @@ const Header = ({ routes }) => {
             <Logo to="/">
               <img src={LogoIcon} alt="" />{" "}
             </Logo>
-            <LanguageButton>
-              <GrLanguage />
-            </LanguageButton>
+            <LanguageButton>{/* <GrLanguage /> */}</LanguageButton>
             <MobileButton onClick={handleOpen}>
               <GiHamburgerMenu />
             </MobileButton>

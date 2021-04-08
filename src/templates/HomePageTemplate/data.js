@@ -66,20 +66,20 @@ export const technologyCards = [
     image: iso,
     title: "ISO",
     description: `Technologia pozwalająca na osiągnięcie efektów nieosiągalnych dla tradycyjnie wykonanych rozdzielaczy.`,
-    visitPath: "/technology/iso",
+    visitPath: "/technologies/iso",
   },
   {
     id: 2,
     image: lsr,
     title: "LSR",
     description: `Technologia LSR przeznaczona do wtryskiwania silikonu.`,
-    visitPath: "/",
+    visitPath: "/technologies/lsr",
   },
   {
     id: 3,
     image: servo,
     title: "T-Servo system",
     description: `Łatwe w utrzymaniu rozwiązanie stosowane w połączeniu z gorącą połówką.`,
-    visitPath: "/",
+    visitPath: "/technologies/t-servo",
   },
 ];

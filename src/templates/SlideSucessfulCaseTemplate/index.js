@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 
@@ -11,6 +11,16 @@ const Wrapper = styled.div`
 
 const SlideContainer = styled.div`
   display: grid;
+
+  h2 {
+    color: var(--clr-black);
+    margin: 10px auto;
+    font-size: 22px;
+    text-align: center;
+    @media screen and (min-width: 768px) {
+      font-size: 18px;
+    }
+  }
 
   img {
     justify-self: center;
@@ -32,6 +42,7 @@ const SlideContainer = styled.div`
     max-width: var(--max-width);
     margin: 0 auto;
     grid-template-columns: 1fr;
+    grid-gap: 5px;
     /* grid-template-rows: 300px; */
     align-items: center;
     justify-content: center;
@@ -48,13 +59,13 @@ const Content = styled.div`
   h2 {
     color: var(--clr-black);
     margin: 10px auto;
-    font-size: 20px;
+    font-size: 12px;
   }
 
   p {
     color: var(--clr-black);
     font-size: 1.4rem;
-    margin: 4px 0 4px 0;
+    margin: 4px 0 4px 15px;
     /* padding: 20px 0 20px 0; */
   }
 
@@ -67,43 +78,46 @@ const Content = styled.div`
   }
 `;
 
-const StyledButton = styled(Link)`
-  align-self: center;
-  font-size: 1.5rem;
-  font-family: "Roboto";
-  color: var(--clr-primary);
-  background: var(--clr-secondary);
-  border: 1px solid var(--clr-primary);
-  border-radius: 0.3rem;
-  padding: 0.4rem 1rem;
-  max-width: 13rem;
-  text-align: center;
+// const StyledButton = styled(Link)`
+//   align-self: center;
+//   font-size: 1.5rem;
+//   font-family: "Roboto";
+//   color: var(--clr-primary);
+//   background: var(--clr-secondary);
+//   border: 1px solid var(--clr-primary);
+//   border-radius: 0.3rem;
+//   padding: 0.4rem 1rem;
+//   max-width: 13rem;
+//   text-align: center;
 
-  &:hover {
-    background-color: var(--clr-primary);
-    color: var(--clr-secondary);
-  }
-`;
+//   &:hover {
+//     background-color: var(--clr-primary);
+//     color: var(--clr-secondary);
+//   }
+// `;
 
 const Slide = ({ content }) => {
   const {
-    image,
-    title,
+    applicationPicture,
+    name,
     description,
-    description2,
-    description3,
-    visitPath,
+    system,
+    gatesNo,
+    material,
+    weight,
   } = content;
   return (
     <Wrapper>
       <SlideContainer>
-        <img src={image} alt="" />
+        <h2>{name}</h2>
+        <img src={applicationPicture[0].url} alt="" />
         <Content>
-          <h2>{title}</h2>
           <p>{description}</p>
-          {description2 && <p>{description2}</p>}
-          {description3 && <p>{description3}</p>}
-          <StyledButton to={visitPath}>wiecej...</StyledButton>
+          {system && <p>System: {system}</p>}
+          {gatesNo && <p>Nr gniazd: {gatesNo}</p>}
+          {material && <p>Materiał: {material}</p>}
+          {weight && <p>Waga detalu: {weight}</p>}
+          {/* <StyledButton to={visitPath}>wiecej...</StyledButton> */}
         </Content>
       </SlideContainer>
     </Wrapper>

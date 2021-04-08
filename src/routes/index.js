@@ -6,9 +6,8 @@ export const locations = {
   markets: "/markets",
   market: "/markets/:slug",
   technologies: "/technologies",
-  // technology: "/technologies/:slug",
-  sucessfulCases: "/sucessful-case",
-  sucessfulCase: "/sucessful-case/:id",
+  sucessfulCases: "/sucessful-cases",
+  sucessfulCase: "/sucessful-cases/:id",
   download: "/download",
   contact: "/contact",
 };

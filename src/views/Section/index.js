@@ -7,14 +7,14 @@ import DetailsTemplate from "templates/DetailsTemplate";
 const SectionView = () => {
   const { path } = useRouteMatch();
   const { routes } = useContext(RoutesContext);
-  const [markets, setMarkets] = useState([]);
+  const [sections, setSections] = useState([]);
 
   useEffect(() => {
-    setMarkets(routes.find((element) => element.url === path).subSection);
+    setSections(routes.find((element) => element.url === path).subSection);
   }, [routes, path]);
 
   return (
-    <SectionTemplate routes={markets}>
+    <SectionTemplate routes={sections}>
       <Switch>
         <Route exact path={`${path}`}>
           {path === `/products` && (

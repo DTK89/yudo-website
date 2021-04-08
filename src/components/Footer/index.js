@@ -106,7 +106,7 @@ const Footer = ({ routes }) => (
             <StyledLink to={routes[0].url}>{routes[0].label}</StyledLink>
           </li>
           <li>
-            <StyledLink to={routes[5].url}>{routes[5].label}</StyledLink>
+            <StyledLink to={routes[7].url}>{routes[7].label}</StyledLink>
           </li>
           <li>
             <StyledLink to={routes[6].url}>{routes[6].label}</StyledLink>
@@ -166,20 +166,18 @@ const Footer = ({ routes }) => (
                 ))}
             </SyledSubList>
           </li>
-          {/* <li>
-              <StyledLink to={routes[5].url}>
-                {routes[5].label}
-              </StyledLink>
-              <SyledSubList>
-                {routes[5].subSection.map((section) => (
-                  <li key={section.id}>
-                    <StyledSubLink to={section.url}>
-                      {section.label}
-                    </StyledSubLink>
-                  </li>
-                ))}
-              </SyledSubList>
-            </li> */}
+          <li>
+            <StyledLink to={routes[5].url}>{routes[5].label}</StyledLink>
+            <SyledSubList>
+              {routes[5].subSection.map((section) => (
+                <li key={section.id}>
+                  <StyledSubLink to={`${routes[5].url}/${section.slug}`}>
+                    {section.label}
+                  </StyledSubLink>
+                </li>
+              ))}
+            </SyledSubList>
+          </li>
         </SecPartListWrapper>
       </LinksContainer>
       <LogoColumnContainer>

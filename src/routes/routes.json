@@ -51,7 +51,53 @@
     "label": "Sucessful Cases",
     "url": "/sucessful-case",
     "background" : "",
-    "subSection" : []
+    "subSection" : [
+        {
+            "id": 1,
+            "label": "Przemysł Samochodowy",
+            "slug": "automotive"
+        },
+        {
+            "id": 2,
+            "label": "TV",
+            "slug": "tv"
+        },
+        {
+            "id": 3,
+            "label": "Laptopy",
+            "slug": "laptop"
+        },
+        {
+            "id": 4,
+            "label": "Telefony",
+            "slug": "mobile"
+        },
+        {
+            "id": 5,
+            "label": "Wyposażenie Biura",
+            "slug": "office"
+        },
+        {
+            "id": 6,
+            "label": "Wyposażenie Domu",
+            "slug": "home"
+        },
+        {
+            "id": 7,
+            "label": "Opakowania",
+            "slug": "packaging"
+        },
+        {
+            "id": 8,
+            "label": "Medycyna",
+            "slug": "medical"
+        },
+        {
+            "id": 9,
+            "label": "Przemysł Cięzki",
+            "slug": "industrial"
+        }
+    ]
 },
 {
     "id": 7,
