@@ -24,7 +24,9 @@
     "rules": {
         "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
         "react/state-in-constructor": "off",
-        "prettier/prettier": "error"
+        "prettier/prettier": "error",
+        "react/prop-types": 0,
+        "no-console": [0, { "allow": ["warn", "error"] }]
     },
     "settings": {
         "import/resolver": {

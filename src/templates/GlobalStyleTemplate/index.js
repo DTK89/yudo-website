@@ -5,11 +5,11 @@ import GlobalStyle from "theme/GlobalStyle";
 // import { theme } from 'theme/mainTheme';
 
 const GlobalTemplate = ({ children }) => (
-  <div>
+  <>
     <GlobalStyle />
     {/* <ThemeProvider>{children}</ThemeProvider> */}
     {children}
-  </div>
+  </>
 );
 
 GlobalTemplate.propTypes = {

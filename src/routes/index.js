@@ -1,0 +1,30 @@
+export const locations = {
+  home: "/",
+  aboutUs: "/about",
+  products: "/products",
+  product: "/products/:slug",
+  markets: "/markets",
+  market: "/markets/:slug",
+  technologies: "/technologies",
+  sucessfulCases: "/sucessful-cases",
+  sucessfulCase: "/sucessful-cases/:id",
+  download: "/download",
+  contact: "/contact",
+};
+
+export const labels = {
+  home: "/",
+  aboutUs: "/about",
+  aboutGlobal: "/about/global",
+  products: "/products",
+  product: "/products/:slug",
+  markets: "/markets",
+  market: "/markets/:slug",
+  technologies: "/technology",
+  technology: "/technology/:slug",
+  sucessfulCases: "/sucessful-case",
+  sucessfulCase: "/sucessful-case/:id",
+  download: "/download",
+  contact: "/contact",
+  contactGlobal: "/contact/global",
+};
