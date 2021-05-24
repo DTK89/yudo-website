@@ -2,7 +2,7 @@
   "name": "yudo-website",
   "version": "1.0.0",
   "private": true,
-  "proxy": "http://172.30.41.96:1337/",
+  "proxy": "http://api.localhost:80/",
   "dependencies": {
     "@react-google-maps/api": "^2.1.1",
     "@testing-library/jest-dom": "^5.11.9",
