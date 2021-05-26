@@ -15,12 +15,12 @@
         {
             "id": 1,
             "label": "O YUDO",
-            "slug": "yudo-worldwide"
+            "urlSlug": "yudo-global"
         },
         {
             "id": 2,
             "label": "YUDO w Polsce",
-            "slug": "yudo-poland"
+            "urlSlug": "yudo-poland"
         }
     ]
 },

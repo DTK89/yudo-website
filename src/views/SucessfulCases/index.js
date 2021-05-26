@@ -6,12 +6,14 @@ import GridSucessfulCasesTemplate from "templates/GridSucessfulCasesTemplate";
 
 const SucessfulCases = () => {
   const { path } = useRouteMatch();
-  const { routes } = useContext(RoutesContext);
+  const { navRoutes } = useContext(RoutesContext);
   const [caseSection, setCaseSection] = useState([]);
 
   useEffect(() => {
-    setCaseSection(routes.find((element) => element.url === path).subSection);
-  }, [path, routes]);
+    setCaseSection(
+      navRoutes.find((element) => element.url === path).subSection
+    );
+  }, [path, navRoutes]);
 
   return (
     <SectionTemplate routes={caseSection}>

@@ -6,12 +6,12 @@ import DetailsTemplate from "templates/DetailsTemplate";
 
 const SectionView = () => {
   const { path } = useRouteMatch();
-  const { routes } = useContext(RoutesContext);
+  const { navRoutes } = useContext(RoutesContext);
   const [sections, setSections] = useState([]);
 
   useEffect(() => {
-    setSections(routes.find((element) => element.url === path).subSection);
-  }, [routes, path]);
+    setSections(navRoutes.find((element) => element.url === path).subSection);
+  }, [navRoutes, path]);
 
   return (
     <SectionTemplate routes={sections}>

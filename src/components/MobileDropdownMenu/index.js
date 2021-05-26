@@ -107,10 +107,10 @@ const DropdownMenu = ({
                   >
                     <ul>
                       {section.subSection.map((subSectionLink) => (
-                        <li key={subSectionLink.slug}>
+                        <li key={subSectionLink.id}>
                           <SubSectionLink
                             onClick={toggleDropdown}
-                            to={`${section.url}/${subSectionLink.slug}`}
+                            to={`${section.url}/${subSectionLink.urlSlug}`}
                           >
                             {subSectionLink.label}
                           </SubSectionLink>
@@ -118,9 +118,9 @@ const DropdownMenu = ({
                             subSectionLink.singleSection.map(
                               (singleSection) => (
                                 <SubSubSectionLink
-                                  key={singleSection.slug}
+                                  key={singleSection.id}
                                   onClick={toggleDropdown}
-                                  to={`${section.url}/${subSectionLink.slug}/${singleSection.slug}`}
+                                  to={`${section.url}/${subSectionLink.urlSlug}/${singleSection.urlSlug}`}
                                 >
                                   {singleSection.label}
                                 </SubSubSectionLink>

@@ -7,12 +7,12 @@ import { RoutesContext } from "providers/RoutesProvider";
 
 const Contact = () => {
   const { path } = useRouteMatch();
-  const { routes } = useContext(RoutesContext);
+  const { navRoutes } = useContext(RoutesContext);
   const [contacts, setContacts] = useState([]);
 
   useEffect(() => {
-    setContacts(routes.find((element) => element.url === path).subSection);
-  }, [routes, path]);
+    setContacts(navRoutes.find((element) => element.url === path).subSection);
+  }, [navRoutes, path]);
 
   return (
     <SectionTemplate routes={contacts}>

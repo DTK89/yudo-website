@@ -1,13 +1,15 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Switch, Route, Redirect, useRouteMatch } from "react-router-dom";
 import { api, endpoints } from "api";
 import MarkdownParser from "components/MarkdownParser";
 import SectionTemplate from "templates/SectionTemplate";
-import { sections, background } from "./data";
+import { RoutesContext } from "providers/RoutesProvider";
+import { sections } from "./data";
 
 const About = () => {
   const [aboutInfo, setAboutInfo] = useState([]);
   const [aboutInfoGlobal, setAboutInfoGlobal] = useState([]);
+  const { navRoutes } = useContext(RoutesContext);
   const { path } = useRouteMatch();
 
   useEffect(() => {
@@ -35,12 +37,17 @@ const About = () => {
   }, []);
 
   return (
-    <SectionTemplate backgroundImg={background} routes={sections}>
+    <SectionTemplate
+      backgroundImg={
+        navRoutes.find((element) => element.url === path).background.url
+      } // rebuild to display backgrounds.
+      routes={navRoutes.find((element) => element.url === path).subSection}
+    >
       <Switch>
         <Route exact path={`${path}`}>
-          <Redirect to={`${path}/${sections[0].slug}`} />
+          <Redirect to={`${path}/${sections[0].urlSlug}`} />
         </Route>
-        <Route path={`${path}/${sections[0].slug}`}>
+        <Route path={`${path}/${sections[0].urlSlug}`}>
           <div>
             <h2>{aboutInfoGlobal.title}</h2>
             {aboutInfoGlobal.description ? (
@@ -50,7 +57,7 @@ const About = () => {
             )}
           </div>
         </Route>
-        <Route path={`${path}/${sections[1].slug}`}>
+        <Route path={`${path}/${sections[1].urlSlug}`}>
           <div>
             <h2>{aboutInfo.title}</h2>
             {aboutInfoGlobal.description ? (

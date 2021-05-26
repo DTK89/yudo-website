@@ -1,12 +1,14 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Switch, Route, Redirect, useRouteMatch } from "react-router-dom";
 import { api, endpoints } from "api";
 import SectionTemplate from "templates/SectionTemplate";
 import GridTemplate from "templates/GridTemplate";
+import { RoutesContext } from "providers/RoutesProvider";
 import { background } from "./data";
 
 const Downloads = () => {
   const { path } = useRouteMatch();
+  const { navRoutes } = useContext(RoutesContext);
   const [downloads, setDownloads] = useState([]);
 
   useEffect(() => {
@@ -21,7 +23,10 @@ const Downloads = () => {
   }, []);
 
   return (
-    <SectionTemplate backgroundImg={background} routes={downloads}>
+    <SectionTemplate
+      backgroundImg={background}
+      routes={navRoutes.find((element) => element.url === path).subSection}
+    >
       <Switch>
         <Route exact path={`${path}`}>
           <Redirect to="/download/market-catalogues" />

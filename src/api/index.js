@@ -1,14 +1,14 @@
 import axios from "axios";
 
 export const api = axios.create({
-  baseURL: "http://api.localhost:80/",
+  baseURL: "http://yudopl.com/api/",
 });
 
 export const endpoints = {
-  routes: "routes/",
-  route: "routes?url=",
+  routes: "navigations?_sort=id:ASC",
+  route: "navigations?url=",
   about: "yudo-poland/",
-  aboutGlobal: "yudo-worldwide/",
+  aboutGlobal: "yudo-global/",
   productList: "product-list/",
   products: "products?slug=",
   technologies: "technologies?slug=",
@@ -17,5 +17,5 @@ export const endpoints = {
   sucessfulCases: "sucessful-cases?display=true",
   downloads: "download/",
   contact: "contact/",
-  contactGlobal: "contact-global/",
+  // contactGlobal: "contact-global/",
 };
