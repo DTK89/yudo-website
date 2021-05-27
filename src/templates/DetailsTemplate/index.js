@@ -147,7 +147,7 @@ const MarketDetailsTemplate = ({ sectionEndpoint }) => {
                       {paragraphSection.description}
                     </MarkdownParser>
                     <img
-                      src={`${paragraphSection.descriptionPicture.url}`}
+                      src={`http://yudopl.com/api${paragraphSection.descriptionPicture.url}`}
                       alt=""
                     />
                   </RichTextWithPhotoRight>

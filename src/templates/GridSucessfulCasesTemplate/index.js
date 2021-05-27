@@ -147,7 +147,7 @@ const GridSucessfulCasesTemplate = ({ sectionEndpoint }) => {
                   {specificCase?.applicationPicture[0]?.formats?.thumbnail
                     ?.url && (
                     <img
-                      src={`${specificCase.applicationPicture[0].formats.thumbnail.url}`}
+                      src={`http://yudopl.com/api${specificCase.applicationPicture[0].formats.thumbnail.url}`}
                       alt=""
                     />
                   )}

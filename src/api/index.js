@@ -17,5 +17,5 @@ export const endpoints = {
   sucessfulCases: "sucessful-cases?display=true",
   downloads: "download/",
   contact: "contact/",
-  // contactGlobal: "contact-global/",
+  contactGlobal: "contact-worldwide/",
 };

@@ -4,7 +4,7 @@ import { api, endpoints } from "api";
 import MarkdownParser from "components/MarkdownParser";
 import SectionTemplate from "templates/SectionTemplate";
 import { RoutesContext } from "providers/RoutesProvider";
-import { sections } from "./data";
+// import { sections } from "./data";
 
 const About = () => {
   const [aboutInfo, setAboutInfo] = useState([]);
@@ -36,18 +36,24 @@ const About = () => {
       });
   }, []);
 
+  // useEffect(() => {
+  //   setContacts(navRoutes.find((element) => element.url === path).subSection);
+  // }, [navRoutes, path]);
+
   return (
     <SectionTemplate
-      backgroundImg={
-        navRoutes.find((element) => element.url === path).background.url
-      } // rebuild to display backgrounds.
+      // backgroundImg={
+      //   navRoutes.find((element) => element.url === path).background.url
+      // } // rebuild to display backgrounds.
       routes={navRoutes.find((element) => element.url === path).subSection}
     >
       <Switch>
         <Route exact path={`${path}`}>
-          <Redirect to={`${path}/${sections[0].urlSlug}`} />
+          {/* <Redirect to={`${path}/${sections[0].urlSlug}`} /> */}
+          <Redirect to={`${path}/yudo-global`} />
         </Route>
-        <Route path={`${path}/${sections[0].urlSlug}`}>
+        {/* <Route path={`${path}/${sections[0].urlSlug}`}> */}
+        <Route path={`${path}/yudo-global`}>
           <div>
             <h2>{aboutInfoGlobal.title}</h2>
             {aboutInfoGlobal.description ? (
@@ -57,7 +63,8 @@ const About = () => {
             )}
           </div>
         </Route>
-        <Route path={`${path}/${sections[1].urlSlug}`}>
+        {/* <Route path={`${path}/${sections[1].urlSlug}`}> */}
+        <Route path={`${path}/yudo-poland`}>
           <div>
             <h2>{aboutInfo.title}</h2>
             {aboutInfoGlobal.description ? (

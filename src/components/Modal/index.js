@@ -118,7 +118,7 @@ const Modal = ({ showModal, setShowModal, postContent }) => {
           <ModalWrapper showModal={showModal}>
             {postContent?.applicationPicture[0]?.formats?.thumbnail?.url && (
               <ModalImg
-                src={`${postContent.applicationPicture[0].formats.medium.url}`}
+                src={`http://yudopl.com/api${postContent.applicationPicture[0].formats.medium.url}`}
                 alt=""
               />
             )}
