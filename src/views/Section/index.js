@@ -6,12 +6,12 @@ import DetailsTemplate from "templates/DetailsTemplate";
 
 const SectionView = () => {
   const { path } = useRouteMatch();
-  const { routes } = useContext(RoutesContext);
+  const { navRoutes } = useContext(RoutesContext);
   const [sections, setSections] = useState([]);
 
   useEffect(() => {
-    setSections(routes.find((element) => element.url === path).subSection);
-  }, [routes, path]);
+    setSections(navRoutes.find((element) => element.url === path).subSection);
+  }, [navRoutes, path]);
 
   return (
     <SectionTemplate routes={sections}>
@@ -19,6 +19,9 @@ const SectionView = () => {
         <Route exact path={`${path}`}>
           {path === `/products` && (
             <Redirect to={`${path}/hot-runner-system/tina-am`} />
+          )}
+          {path === `/products/hot-half-systems` && (
+            <Redirect to="/products/hot-half-systems/hot-half" />
           )}
           {path === `/markets` && <Redirect to={`${path}/automotive`} />}
           {path === `/technologies` && <Redirect to={`${path}/iso`} />}

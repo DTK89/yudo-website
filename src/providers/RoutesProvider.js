@@ -3,17 +3,17 @@ import { api, endpoints } from "api";
 import routesDefault from "routes/routes.json";
 
 export const RoutesContext = React.createContext({
-  routes: [],
+  navRoutes: [],
 });
 
 const RoutesProvider = ({ children }) => {
-  const [routes, setRoutes] = useState(routesDefault);
+  const [navRoutes, setNavRoutes] = useState(routesDefault);
 
   useEffect(() => {
     api
       .get(endpoints.routes)
       .then(({ data }) => {
-        setRoutes(data);
+        setNavRoutes(data);
       })
       .catch((error) => {
         console.error(error);
@@ -21,7 +21,7 @@ const RoutesProvider = ({ children }) => {
   }, []);
 
   return (
-    <RoutesContext.Provider value={{ routes }}>
+    <RoutesContext.Provider value={{ navRoutes }}>
       {children}
     </RoutesContext.Provider>
   );

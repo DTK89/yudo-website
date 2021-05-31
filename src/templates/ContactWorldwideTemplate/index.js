@@ -23,19 +23,6 @@ const TitleWrapper = styled.div`
   }
 `;
 
-// const ContactSubContainer = styled.div`
-//   min-height: 180px;
-//   display: flex;
-
-//   div {
-//     min-width: 30%;
-//   }
-
-//   @media screen and (max-width: 992px) {
-//     flex-direction: column;
-//   }
-// `;
-
 const ContactGrid = styled.div`
   margin-top: 20px;
   display: grid;

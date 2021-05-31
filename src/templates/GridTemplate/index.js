@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
+import axios from "axios";
 import styled from "styled-components";
 
 const TitleWrapper = styled.div`
@@ -50,7 +51,7 @@ const FileCard = styled.div`
     margin: 10px 0 10px 0;
   }
 
-  a {
+  button {
     text-align: center;
     width: 100%;
     padding: 5px 15px;
@@ -69,6 +70,21 @@ const GridTemplate = ({ fileLists }) => {
   const { slug } = useParams();
   const [downloadList, setDownloadList] = useState([]);
 
+  const Download = (fileName, fileExt, fileData) => {
+    axios({
+      url: `http://yudopl.com/api/${fileData}`,
+      method: "GET",
+      responseType: "blob", // important
+    }).then((response) => {
+      const url = window.URL.createObjectURL(new Blob([response.data]));
+      const link = document.createElement("a");
+      link.href = url;
+      link.setAttribute("download", `${fileName}${fileExt}`); // or any other extension
+      document.body.appendChild(link);
+      link.click();
+    });
+  };
+
   useEffect(() => {
     setDownloadList(fileLists.find((element) => element.slug === slug));
   }, [slug, fileLists]);
@@ -86,15 +102,20 @@ const GridTemplate = ({ fileLists }) => {
               <FileCard key={file.id}>
                 <h4>{file.label}</h4>
                 <p>Rozmiar: {file.file[0].size} kB</p>
-                <Link
-                  to={`${file.file[0].url}`}
-                  download
+                <button
+                  onClick={() =>
+                    Download(file.label, file.file[0].ext, file.file[0].url)
+                  }
+                  type="button"
+                  // to={`${file.file[0].url}`}
+                  // to={`${file.file[0].url}`}
+                  // download
                   // through
                   target="_blank"
                   rel="noreferrer"
                 >
                   Plik
-                </Link>
+                </button>
               </FileCard>
             ))}
           </GridWrapper>

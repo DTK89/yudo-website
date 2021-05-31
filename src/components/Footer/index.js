@@ -117,7 +117,7 @@ const Footer = ({ routes }) => (
               {routes[1].subSection.length !== 0
                 ? routes[1].subSection.map((section) => (
                     <li key={section.id}>
-                      <StyledSubLink to={`${routes[1].url}/${section.slug}`}>
+                      <StyledSubLink to={`${routes[1].url}/${section.urlSlug}`}>
                         {section.label}
                       </StyledSubLink>
                     </li>
@@ -133,7 +133,13 @@ const Footer = ({ routes }) => (
               {routes[2].subSection.length !== 0 &&
                 routes[2].subSection.map((section) => (
                   <li key={section.id}>
-                    <StyledSubLink to={`${routes[2].url}/${section.slug}`}>
+                    <StyledSubLink
+                      to={`${routes[2].url}/${section.urlSlug}/${
+                        section?.singleSection
+                          ? section.singleSection[0].urlSlug
+                          : ""
+                      }`}
+                    >
                       {section.label}
                     </StyledSubLink>
                   </li>
@@ -146,7 +152,13 @@ const Footer = ({ routes }) => (
               {routes[3].subSection.length !== 0 &&
                 routes[3].subSection.map((section) => (
                   <li key={section.id}>
-                    <StyledSubLink to={`${routes[3].url}/${section.slug}`}>
+                    <StyledSubLink
+                      to={`${routes[3].url}/${section.urlSlug}/${
+                        section?.singleSection
+                          ? section.singleSection[0].urlSlug
+                          : ""
+                      }`}
+                    >
                       {section.label}
                     </StyledSubLink>
                   </li>
@@ -159,7 +171,13 @@ const Footer = ({ routes }) => (
               {routes[4].subSection.length !== 0 &&
                 routes[4].subSection.map((section) => (
                   <li key={section.id}>
-                    <StyledSubLink to={`${routes[4].url}/${section.slug}`}>
+                    <StyledSubLink
+                      to={`${routes[4].url}/${section.urlSlug}/${
+                        section?.singleSection
+                          ? section.singleSection[0].urlSlug
+                          : ""
+                      }`}
+                    >
                       {section.label}
                     </StyledSubLink>
                   </li>
@@ -171,7 +189,13 @@ const Footer = ({ routes }) => (
             <SyledSubList>
               {routes[5].subSection.map((section) => (
                 <li key={section.id}>
-                  <StyledSubLink to={`${routes[5].url}/${section.slug}`}>
+                  <StyledSubLink
+                    to={`${routes[5].url}/${section.urlSlug}/${
+                      section?.singleSection
+                        ? section.singleSection[0].urlSlug
+                        : ""
+                    }`}
+                  >
                     {section.label}
                   </StyledSubLink>
                 </li>

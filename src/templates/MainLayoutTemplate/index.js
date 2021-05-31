@@ -5,7 +5,6 @@ import Header from "components/Header";
 import Footer from "components/Footer";
 import styled from "styled-components";
 import backupImg from "assets/backgrounds/Products.jpg";
-// import routesDefault from "routes/routes.json";
 import { RoutesContext } from "providers/RoutesProvider";
 
 const BackgroundImage = styled.div`
@@ -28,12 +27,12 @@ const BackgroundFilter = styled.div`
 `;
 
 const MainLayout = ({ children, backgroundImg }) => {
-  const { routes } = useContext(RoutesContext);
+  const { navRoutes } = useContext(RoutesContext);
   return (
     <BackgroundImage backgroundImg={backgroundImg}>
-      <Header routes={routes} />
+      <Header routes={navRoutes} />
       <BackgroundFilter>{children}</BackgroundFilter>
-      <Footer routes={routes} />
+      <Footer routes={navRoutes} />
     </BackgroundImage>
   );
 };
