@@ -62,7 +62,7 @@ const Sidebar = ({ routes }) => {
       {routeTree?.length ? (
         <StyledList>
           {routeTree.map((sectionLink, index) => (
-            <li key={sectionLink.urlSlug}>
+            <li key={sectionLink.id}>
               {sectionLink.singleSection &&
               sectionLink.singleSection.length > 1 ? (
                 <SidebarDropdownList
@@ -74,7 +74,7 @@ const Sidebar = ({ routes }) => {
                 >
                   <ul>
                     {sectionLink.singleSection.map((singleSectionLink) => (
-                      <li key={singleSectionLink.urlSlug}>
+                      <li key={singleSectionLink.id}>
                         <SubSectionLink
                           activeClassName="active"
                           to={`${url}/${sectionLink.urlSlug}/${singleSectionLink.urlSlug}`}

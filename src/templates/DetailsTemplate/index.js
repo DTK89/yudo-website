@@ -7,7 +7,7 @@ import styled from "styled-components";
 const TitleWrapper = styled.div`
   display: flex;
   align-items: flex-end;
-  margin: 20px 0 30px 0;
+  margin: 20px 0 10px 0;
   align-items: center;
 
   span {
@@ -38,6 +38,7 @@ const RichTextWithPhotoRight = styled.div`
   grid-gap: 10px;
   justify-content: center;
   align-items: center;
+  margin-bottom: 10px;
 
   img {
     width: 100%;
@@ -46,12 +47,15 @@ const RichTextWithPhotoRight = styled.div`
   }
 
   p {
-    margin-left: 25px;
+    margin-left: 10px;
+    margin-right: 10px;
     text-align: justify;
   }
 
   ul {
-    margin-left: 50px;
+    text-align: left;
+    margin-left: 30px;
+    margin-right: 10px;
   }
 
   @media screen and (min-width: 425px) {
@@ -61,15 +65,15 @@ const RichTextWithPhotoRight = styled.div`
     }
   }
 
-  @media screen and (min-width: 992px) {
-    grid-template-columns: 1.5fr 1fr;
+  @media screen and (min-width: 768px) {
+    grid-template-columns: 48.5% 48.5%;
     grid-template-rows: minmax(200px, auto);
     grid-gap: 20px;
 
     img {
       justify-self: center;
       width: 100%;
-      min-width: 300px;
+      /* min-width: 300px; */
     }
   }
 `;
@@ -97,16 +101,20 @@ const SingleRichText = styled.div`
     }
 
     p {
-      margin-left: 25px;
+      margin-left: 10px;
+      margin-right: 10px;
       text-align: justify;
     }
 
     ul {
-      /* margin-left: 50px; */
+      text-align: left;
+      margin-left: 30px;
+      margin-right: 10px;
     }
   }
 
   @media screen and (min-width: 992px) {
+    margin-top: 20px;
     img {
       justify-self: center;
       width: 100%;
@@ -134,29 +142,49 @@ const MarketDetailsTemplate = ({ sectionEndpoint }) => {
     <>
       {description ? (
         <>
-          <TitleWrapper>
-            <span />
-            <h2>{description.label}</h2>
-          </TitleWrapper>
           {description?.paragraph?.length !== 0 ? (
             description.paragraph.map((paragraphSection) => (
               <div key={paragraphSection.id}>
                 {paragraphSection?.descriptionPicture ? (
-                  <RichTextWithPhotoRight>
-                    <MarkdownParser>
-                      {paragraphSection.description}
-                    </MarkdownParser>
-                    <img
-                      src={`http://yudopl.com/api${paragraphSection.descriptionPicture.url}`}
-                      alt=""
-                    />
-                  </RichTextWithPhotoRight>
+                  <>
+                    {paragraphSection.displayTitle === true ? (
+                      <TitleWrapper>
+                        <span />
+                        <h2>{paragraphSection.title}</h2>
+                      </TitleWrapper>
+                    ) : null}
+                    <RichTextWithPhotoRight>
+                      {paragraphSection.movePictureLeft === true ? (
+                        <img
+                          src={`http://yudopl.com/api${paragraphSection.descriptionPicture.url}`}
+                          alt=""
+                        />
+                      ) : null}
+                      <MarkdownParser>
+                        {paragraphSection.description}
+                      </MarkdownParser>
+                      {paragraphSection.movePictureLeft === false ? (
+                        <img
+                          src={`http://yudopl.com/api${paragraphSection.descriptionPicture.url}`}
+                          alt=""
+                        />
+                      ) : null}
+                    </RichTextWithPhotoRight>
+                  </>
                 ) : (
-                  <SingleRichText>
-                    <MarkdownParser>
-                      {paragraphSection.description}
-                    </MarkdownParser>
-                  </SingleRichText>
+                  <>
+                    {paragraphSection.displayTitle === true ? (
+                      <TitleWrapper>
+                        <span />
+                        <h2>{paragraphSection.title}</h2>
+                      </TitleWrapper>
+                    ) : null}
+                    <SingleRichText>
+                      <MarkdownParser>
+                        {paragraphSection.description}
+                      </MarkdownParser>
+                    </SingleRichText>
+                  </>
                 )}
               </div>
             ))

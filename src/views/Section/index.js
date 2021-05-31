@@ -20,6 +20,9 @@ const SectionView = () => {
           {path === `/products` && (
             <Redirect to={`${path}/hot-runner-system/tina-am`} />
           )}
+          {path === `/products/hot-half-systems` && (
+            <Redirect to="/products/hot-half-systems/hot-half" />
+          )}
           {path === `/markets` && <Redirect to={`${path}/automotive`} />}
           {path === `/technologies` && <Redirect to={`${path}/iso`} />}
         </Route>

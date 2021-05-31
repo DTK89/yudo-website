@@ -21,11 +21,20 @@ const TitleWrapper = styled.div`
 
     color: #777;
   }
+
+  h5 {
+    font-size: 12px;
+    font-weight: 400;
+    margin: 5px 0 5px 0;
+
+    color: #777;
+  }
 `;
 
 const ContactSectionWrapper = styled.div`
   display: flex;
   flex-direction: column;
+  /* flex-wrap: wrap; */
 
   @media screen and (min-width: 992px) {
     flex-direction: row;
@@ -34,12 +43,28 @@ const ContactSectionWrapper = styled.div`
 
 const ContactGrid = styled.div`
   display: flex;
+  flex-wrap: wrap;
   @media screen and (max-width: 425px) {
     flex-direction: column;
   }
 `;
 
-const ContactCard = styled.div`
+// const StyledMap = styled(Map)`
+//   /* -ms-flex: 0 0 100%;
+//   flex: 0 0 100%;
+//   max-width: 100%; */
+
+//   @media screen and (min-width: 768px) {
+//     -ms-flex: 0 0 50%;
+//     flex: 0 0 50%;
+//     max-width: 50%;
+//   }
+// `;
+
+const GlobalContactCard = styled.div`
+  -ms-flex: 0 0 100%;
+  flex: 0 0 100%;
+  max-width: 100%;
   min-width: 33%;
   margin: 10px;
   h4 {
@@ -48,12 +73,73 @@ const ContactCard = styled.div`
     line-height: 1.1;
   }
 
+  h5 {
+    font-size: 16px;
+    font-weight: 600;
+    margin: 30px 0 5px 0;
+
+    color: #777;
+  }
+
   p {
     font-size: 1.4rem;
     font-family: "roboto";
     margin: 0;
     font-weight: 300;
     line-height: 1.42857;
+  }
+
+  @media screen and (min-width: 992px) {
+    -ms-flex: 0 0 33%;
+    flex: 0 0 33%;
+    max-width: 33%;
+  }
+`;
+
+const ContactCard = styled.div`
+  display: block;
+  -ms-flex: 0 0 100%;
+  flex: 0 0 100%;
+  max-width: 100%;
+  margin: 10px;
+  h4 {
+    margin: 0 0 0.8rem 0;
+    font-weight: 400;
+    line-height: 1.1;
+  }
+
+  h5 {
+    font-size: 16px;
+    font-weight: 600;
+    margin: 30px 0 5px 0;
+
+    color: #777;
+  }
+
+  p {
+    font-size: 1.4rem;
+    font-family: "roboto";
+    margin: 0;
+    font-weight: 300;
+    line-height: 1.42857;
+  }
+
+  @media screen and (min-width: 425px) {
+    -ms-flex: 0 0 45%;
+    flex: 0 0 45%;
+    max-width: 45%;
+  }
+
+  @media screen and (min-width: 768px) {
+    -ms-flex: 0 0 45%;
+    flex: 0 0 45%;
+    max-width: 45%;
+  }
+
+  @media screen and (min-width: 992px) {
+    -ms-flex: 0 0 30%;
+    flex: 0 0 30%;
+    max-width: 30%;
   }
 `;
 
@@ -80,6 +166,7 @@ const ContactTemplate = ({ title }) => {
     city,
     country,
     nip,
+    globalEmail,
   } = contacts;
 
   return (
@@ -91,17 +178,23 @@ const ContactTemplate = ({ title }) => {
       <h3>
         <ContactSectionWrapper>
           <>
-            <ContactCard>
+            <GlobalContactCard>
               <h3>Adres</h3>
               <h4>{companyName}</h4>
               <p>
-                ul.{street} {buildingNo}, {localNo ? `lokal ${localNo}` : ""}
+                ul.{street} {buildingNo} {localNo ? `,lokal ${localNo}` : ""}
               </p>
               <p>
                 {postalCode}, {city}, {country}
               </p>
               <p>NIP: {nip}</p>
-            </ContactCard>
+              {globalEmail && (
+                <>
+                  <h5>Wszystkie zapytania droga mailową proszę kierować na:</h5>
+                  <p>e-mail: {globalEmail}</p>
+                </>
+              )}
+            </GlobalContactCard>
           </>
           <Map />
         </ContactSectionWrapper>
@@ -113,10 +206,10 @@ const ContactTemplate = ({ title }) => {
             contacts.inquiries.map(
               ({ id, name, position, mobilePhone, email }) => (
                 <ContactCard key={id}>
-                  <h4>{name}</h4>
-                  <p>({position})</p>
-                  <p>Telefon: {mobilePhone}</p>
-                  <p>E-mail: {email}</p>
+                  {name && <h4>{name}</h4>}
+                  {position && <p>({position})</p>}
+                  {mobilePhone && <p>Telefon: {mobilePhone}</p>}
+                  {email && <p>e-mail: {email}</p>}
                 </ContactCard>
               )
             )
@@ -132,10 +225,10 @@ const ContactTemplate = ({ title }) => {
             contacts.service.map(
               ({ id, name, position, mobilePhone, email }) => (
                 <ContactCard key={id}>
-                  <h4>{name}</h4>
-                  <p>({position})</p>
-                  <p>Telefon: {mobilePhone}</p>
-                  <p>E-mail: {email}</p>
+                  {name && <h4>{name}</h4>}
+                  {position && <p>({position})</p>}
+                  {mobilePhone && <p>Telefon: {mobilePhone}</p>}
+                  {email && <p>e-mail: {email}</p>}
                 </ContactCard>
               )
             )
@@ -151,10 +244,10 @@ const ContactTemplate = ({ title }) => {
             contacts.projects.map(
               ({ id, name, position, mobilePhone, email }) => (
                 <ContactCard key={id}>
-                  <h4>{name}</h4>
-                  <p>({position})</p>
-                  <p>Telefon: {mobilePhone}</p>
-                  <p>E-mail: {email}</p>
+                  {name && <h4>{name}</h4>}
+                  {position && <p>({position})</p>}
+                  {mobilePhone && <p>Telefon: {mobilePhone}</p>}
+                  {email && <p>e-mail: {email}</p>}
                 </ContactCard>
               )
             )
@@ -170,10 +263,10 @@ const ContactTemplate = ({ title }) => {
             contacts.administration.map(
               ({ id, name, position, mobilePhone, email }) => (
                 <ContactCard key={id}>
-                  <h4>{name}</h4>
-                  <p>({position})</p>
-                  <p>Telefon: {mobilePhone}</p>
-                  <p>E-mail: {email}</p>
+                  {name && <h4>{name}</h4>}
+                  {position && <p>({position})</p>}
+                  {mobilePhone && <p>Telefon: {mobilePhone}</p>}
+                  {email && <p>e-mail: {email}</p>}
                 </ContactCard>
               )
             )
