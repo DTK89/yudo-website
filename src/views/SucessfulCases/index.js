@@ -7,16 +7,21 @@ import GridSucessfulCasesTemplate from "templates/GridSucessfulCasesTemplate";
 const SucessfulCases = () => {
   const { path } = useRouteMatch();
   const { navRoutes } = useContext(RoutesContext);
-  const [caseSection, setCaseSection] = useState([]);
+  const [sections, setSections] = useState([
+    {
+      __component: "navigation.single-section",
+      id: 31,
+      label: "Przemysł Samochodowy",
+      urlSlug: "automotive",
+    },
+  ]);
 
   useEffect(() => {
-    setCaseSection(
-      navRoutes.find((element) => element.url === path).subSection
-    );
-  }, [path, navRoutes]);
+    setSections(navRoutes.find((element) => element.url === path)?.subSection);
+  }, [navRoutes, path]);
 
   return (
-    <SectionTemplate routes={caseSection}>
+    <SectionTemplate routes={sections}>
       <Switch>
         <Route exact path={`${path}`}>
           {path === `/sucessful-cases` && (
@@ -24,7 +29,7 @@ const SucessfulCases = () => {
           )}
         </Route>
         <Route exact path={`${path}/:slug`}>
-          {caseSection && <GridSucessfulCasesTemplate sectionEndpoint={path} />}
+          {sections && <GridSucessfulCasesTemplate />}
         </Route>
       </Switch>
     </SectionTemplate>

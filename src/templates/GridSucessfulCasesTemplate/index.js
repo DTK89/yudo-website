@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { api } from "api";
+import { api, endpoints } from "api";
 import Modal from "components/Modal";
 import styled from "styled-components";
 
@@ -102,22 +102,79 @@ const FileCard = styled.div`
   }
 `;
 
-const GridSucessfulCasesTemplate = ({ sectionEndpoint }) => {
-  const [marketCases, setMarketCases] = useState();
+const PageButtonsWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+
+  button {
+    text-align: center;
+    width: 20px;
+    padding: 5px 5px;
+    margin: 0 2px 0 2px;
+    color: var(--clr-primary);
+    border: 1px solid var(--clr-primary);
+    border-radius: 2px;
+    background-color: transparent;
+
+    &:hover {
+      color: var(--clr-secondary);
+      background: var(--clr-primary);
+    }
+  }
+`;
+
+const GridSucessfulCasesTemplate = () => {
+  const [marketCases, setMarketCases] = useState({});
   const { slug } = useParams();
   const [showModal, setShowModal] = useState(false);
   const [cardIndex, setCardIndex] = useState(0);
+  const [mountedSection, setMountedSection] = useState(true);
+  const [page, setPage] = useState(1);
+  const [entriesNo, setEntriesNo] = useState(2);
 
   useEffect(() => {
+    setMountedSection(true);
     api
-      .get(`${sectionEndpoint}?market=${slug}`)
+      .get(
+        `${endpoints.sucessfulCasesList}${slug}&_start=${
+          (page - 1) * 10
+        }&_limit=10`
+      )
       .then(({ data }) => {
-        setMarketCases(data);
+        if (mountedSection) {
+          setMarketCases(data);
+        }
       })
       .catch((error) => {
         console.error(error);
       });
-  }, [sectionEndpoint, slug]);
+
+    return () => setMountedSection(false);
+  }, [slug, page]);
+
+  useEffect(() => {
+    setMountedSection(true);
+    api
+      .get(`${endpoints.sucessfulCasesPages}${slug}`)
+      .then(({ data }) => {
+        if (mountedSection) {
+          setEntriesNo(data);
+        }
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+
+    return () => setMountedSection(false);
+  }, [slug]);
+
+  useEffect(() => {
+    setPage(1);
+  }, [slug]);
+
+  const nextPage = (i) => {
+    setPage(i + 1);
+  };
 
   const openModal = (e) => {
     setCardIndex(e);
@@ -141,30 +198,45 @@ const GridSucessfulCasesTemplate = ({ sectionEndpoint }) => {
       <GridWrapper>
         {marketCases?.length ? (
           <>
-            {marketCases.map((specificCase, index) => (
-              <div key={specificCase.id}>
-                <FileCard onClick={() => openModal(index)}>
-                  {specificCase?.applicationPicture[0]?.formats?.thumbnail
-                    ?.url && (
-                    <img
-                      src={`http://yudopl.com/api${specificCase.applicationPicture[0].formats.thumbnail.url}`}
-                      alt=""
-                    />
-                  )}
-                  <div>
-                    <h4>{specificCase.name}</h4>
-                    <p>System: {specificCase.system}</p>
-                    <p>Nr gniazd: {specificCase.gatesNo}</p>
-                    <p>Materiał: {specificCase.material}</p>
-                  </div>
-                </FileCard>
-              </div>
-            ))}
+            {marketCases.map(
+              (
+                { id, name, system, gatesNo, material, applicationPicture },
+                index
+              ) => (
+                <div key={id}>
+                  <FileCard onClick={() => openModal(index)}>
+                    {applicationPicture[0]?.formats?.thumbnail?.url && (
+                      <img
+                        src={`http://yudopl.com/api${applicationPicture[0].formats.thumbnail.url}`}
+                        alt=""
+                      />
+                    )}
+                    <div>
+                      {name && <h4>{name}</h4>}
+                      {system && <p>System: {system}</p>}
+                      {gatesNo && <p>Nr gniazd: {gatesNo}</p>}
+                      {material && <p>Materiał: {material}</p>}
+                    </div>
+                  </FileCard>
+                </div>
+              )
+            )}
           </>
         ) : (
-          <h2>Chwilowy brak danych dotyczących tego sektora.</h2>
+          <h2>Brak przypadków dla tego sektora.</h2>
         )}
       </GridWrapper>
+      <PageButtonsWrapper>
+        {[...Array(Math.round(entriesNo / 10))].map((e, i) => (
+          <button
+            type="button"
+            key={Math.random() * 100}
+            /* fix issue with generate key */ onClick={() => nextPage(i)}
+          >
+            {i + 1}
+          </button>
+        ))}
+      </PageButtonsWrapper>
     </>
   );
 };

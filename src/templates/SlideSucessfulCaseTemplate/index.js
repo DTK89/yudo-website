@@ -110,7 +110,10 @@ const Slide = ({ content }) => {
     <Wrapper>
       <SlideContainer>
         <h2>{name}</h2>
-        <img src={`http://yudopl.com/api${applicationPicture[0].url}`} alt="" />
+        <img
+          src={`http://yudopl.com/api${applicationPicture[0].formats.small.url}`}
+          alt=""
+        />
         <Content>
           <p>{description}</p>
           {system && <p>System: {system}</p>}

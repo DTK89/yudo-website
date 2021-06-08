@@ -4,7 +4,6 @@ import { api, endpoints } from "api";
 import MarkdownParser from "components/MarkdownParser";
 import SectionTemplate from "templates/SectionTemplate";
 import { RoutesContext } from "providers/RoutesProvider";
-// import { sections } from "./data";
 
 const About = () => {
   const [aboutInfo, setAboutInfo] = useState([]);
@@ -17,7 +16,6 @@ const About = () => {
       .get(endpoints.about)
       .then(({ data }) => {
         setAboutInfo(data);
-        // console.log(data);
       })
       .catch((error) => {
         console.error(error);
@@ -49,10 +47,8 @@ const About = () => {
     >
       <Switch>
         <Route exact path={`${path}`}>
-          {/* <Redirect to={`${path}/${sections[0].urlSlug}`} /> */}
           <Redirect to={`${path}/yudo-global`} />
         </Route>
-        {/* <Route path={`${path}/${sections[0].urlSlug}`}> */}
         <Route path={`${path}/yudo-global`}>
           <div>
             <h2>{aboutInfoGlobal.title}</h2>
@@ -63,7 +59,6 @@ const About = () => {
             )}
           </div>
         </Route>
-        {/* <Route path={`${path}/${sections[1].urlSlug}`}> */}
         <Route path={`${path}/yudo-poland`}>
           <div>
             <h2>{aboutInfo.title}</h2>
