@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import marked from "marked";
+import{ marked} from "marked";
 
 const StyledRichText = styled.div`
   display: flex;
@@ -45,7 +45,7 @@ const MarkdownParser = ({ children }) => (
   <StyledRichText
     id="preview"
     dangerouslySetInnerHTML={{
-      __html: marked(children),
+      __html: marked.parse(children),
     }}
   />
 );
