@@ -58,6 +58,7 @@ const FileCard = styled.div`
     color: var(--clr-primary);
     border: 1px solid var(--clr-primary);
     border-radius: 2px;
+    background-color: transparent;
 
     &:hover {
       color: var(--clr-secondary);
@@ -107,10 +108,6 @@ const GridTemplate = ({ fileLists }) => {
                     Download(file.label, file.file[0].ext, file.file[0].url)
                   }
                   type="button"
-                  // to={`${file.file[0].url}`}
-                  // to={`${file.file[0].url}`}
-                  // download
-                  // through
                   target="_blank"
                   rel="noreferrer"
                 >
